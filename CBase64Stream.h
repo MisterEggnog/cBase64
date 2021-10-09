@@ -1,21 +1,22 @@
 #ifndef CBASE64STREAM_H_INCLUDED
 #define CBASE64STREAM_H_INCLUDED
 
-#include <stdio.h>
-
-// Needs shim for `restrict` keyword
-
 typedef struct {
   char quad[5];
 } Base64Quard;
 
-// Request 4 base64 numbers, when the end of the file is found, end will be .
-// If C had sum types this would return an option.
-int
-base64_encode(FILE restrict* source, Base64Quard restrict* data);
+// Convert 3 digits to base64
+// If len > 3 function will return error.
+// len < 3, there will be padding
+// len == 0 is ubi
+Base64Quard
+base64_encode(unsigned char input[], size_t len);
 
-// Convert 4 base64 numbers into data, then write to file.
-void
-base64_decode(FILE restrict* dest, const Base64Data restrict* data);
+// Convert 4 base64 numbers into data, return pointer to array of data.
+// ret_len contains the number of bytes.
+// DO NOT DEALLOCATE THE RETURNED DATA.
+// DATA WILL CHANGE UPON CALL.
+unsigned char*
+base64_decode(const Base64Data* data, size_t* ret_len);
 
 #endif // CBASE64STREAM_H_INCLUDED
