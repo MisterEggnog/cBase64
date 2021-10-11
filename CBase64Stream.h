@@ -8,17 +8,14 @@ typedef struct {
 } Base64Quard;
 
 // Convert 3 digits to base64
-// If len > 3 function will return error.
 // len < 3, there will be padding
-// len == 0 is ubi
-Base64Quard
-base64_encode(unsigned char input[], size_t len);
+// If len > 3 or == 0 function will return 0
+int
+base64_encode(const unsigned char* input, size_t len, Base64Quard* dest);
 
-// Convert 4 base64 numbers into data, return pointer to array of data.
-// ret_len contains the number of bytes.
-// DO NOT DEALLOCATE THE RETURNED DATA.
-// DATA WILL CHANGE UPON CALL.
-unsigned char*
-base64_decode(const Base64Quard* data, size_t* ret_len);
+// Convert 4 base64 numbers into data, return the number of decoded byres.
+// Dest must be an array of size > 3.
+size_t
+base64_decode(const Base64Quard* data, unsigned char dest[]);
 
 #endif // CBASE64STREAM_H_INCLUDED
