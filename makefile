@@ -1,5 +1,5 @@
 
-CFLAGS=-g -Wall
+CFLAGS=-g -Wall -I acutest/include/
 
 all: target
 
