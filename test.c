@@ -1,7 +1,7 @@
 
 #include <string.h>
 #include <acutest.h>
-#include "CBase64Stream.h"
+#include "base64.h"
 
 void
 trivial_encode_4c(void) {

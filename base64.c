@@ -1,5 +1,5 @@
 
-#include "CBase64Stream.h"
+#include "base64.h"
 
 static void size4_encode(const unsigned char* input, char* dest);
 
