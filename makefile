@@ -3,10 +3,10 @@ CFLAGS=-g -Wall -I acutest/include/
 
 all: target
 
-target: CBase64Stream.o test.o
+target: base64.o test.o
 	$(CC) -o target $^
 
-CBase64Stream.o: base64.h
+base64.o: base64.h
 
 test.o: base64.h
 
