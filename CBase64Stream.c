@@ -1,9 +1,6 @@
 
 #include "CBase64Stream.h"
 
-#define BASE64_DIGITS "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/"
-#define PADDING "="
-
 static int size4_encode(const unsigned char* input, Base64Quard* dest);
 
 int

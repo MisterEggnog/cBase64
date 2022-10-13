@@ -3,6 +3,9 @@
 
 #include <stddef.h>
 
+#define BASE64_DIGITS "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/"
+#define PADDING "="
+
 typedef struct {
   char quad[5];
 } Base64Quard;
