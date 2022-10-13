@@ -12,9 +12,11 @@ typedef struct {
 
 // Convert 3 digits to base64
 // len < 3, there will be padding
-// If len > 3 or == 0 function will return 0
-int
-base64_encode(const unsigned char* input, size_t len, Base64Quard* dest);
+// If len > 3 or == 0 program may exit with an error.
+//
+// Note that dest must be a string of at least length 4.
+void
+base64_encode(const unsigned char[] input, size_t len, char[] dest);
 
 // Convert 4 base64 numbers into data, return the number of decoded byres.
 // Dest must be an array of size > 3.
