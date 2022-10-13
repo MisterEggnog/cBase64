@@ -16,7 +16,7 @@ typedef struct {
 //
 // Note that dest must be a string of at least length 4.
 void
-base64_encode(const unsigned char[] input, size_t len, char[] dest);
+base64_encode(const unsigned char input[], size_t len, char dest[]);
 
 // Convert 4 base64 numbers into data, return the number of decoded byres.
 // Dest must be an array of size > 3.
