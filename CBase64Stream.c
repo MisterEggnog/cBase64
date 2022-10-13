@@ -3,13 +3,11 @@
 
 static int size4_encode(const unsigned char* input, Base64Quard* dest);
 
-int
-base64_encode(const unsigned char* input, size_t len, Base64Quard* dest) {
+void
+base64_encode(const unsigned char input[], size_t len, char dest[]) {
 	int res;
 	switch (len) {
 		case 4:
-			res = size4_encode(input, dest);
-			break;
 		case 3:
 		case 2:
 		case 1:
