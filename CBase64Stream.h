@@ -6,10 +6,6 @@
 #define BASE64_DIGITS "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/"
 #define PADDING "="
 
-typedef struct {
-  char quad[5];
-} Base64Quard;
-
 // Convert 3 digits to base64
 // len < 3, there will be padding
 // If len > 3 or == 0 program may exit with an error.
