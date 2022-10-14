@@ -1,14 +1,16 @@
 
 CFLAGS=-g -Wall -I acutest/include/
+TARGET=target
 
-all: target
+all: $(TARGET)
+	./$^
 
-target: base64.o test.o
-	$(CC) -o target $^
+$(TARGET): base64.o test.o
+	$(CC) -o $(TARGET) $^
 
 base64.o: base64.h
 
 test.o: base64.h
 
 clean:
-	$(RM) *.o target
+	$(RM) *.o $(TARGET)
