@@ -1,6 +1,6 @@
 
 CFLAGS=-g -Wall -I acutest/include/
-TARGET=target
+TARGET=test
 
 all: $(TARGET)
 	./$^
