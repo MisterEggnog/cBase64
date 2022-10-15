@@ -3,6 +3,10 @@
 
 static void size4_encode(const unsigned char* input, char* dest);
 
+static inline unsigned first_sextet(const unsigned char* input) {
+	return 2;
+}
+
 void
 base64_encode(const unsigned char input[], size_t len, char dest[]) {
 	switch (len) {
