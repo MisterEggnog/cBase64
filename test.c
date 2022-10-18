@@ -26,8 +26,11 @@ void
 first_sextet_encoding_correctly(void) {
 	unsigned char input[] = THREE_OCTET_INPUT;
 	unsigned output[] = THREE_OCTED_OUTPUT_INDICES;
-	unsigned result = first_sextet(input);
+	unsigned result;
 
+	sextet_func fns[] = { first_sextet, };
+
+	result = fns[0](input);
 	TEST_CHECK(result == output[0]);
 	TEST_MSG("The first 6 bits of %d should be %d, not %d\n", input[0], output[0], result);
 }
