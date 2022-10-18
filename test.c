@@ -20,6 +20,8 @@ trivial_encode_4c(void) {
 #define THREE_OCTET_OUTPUT "TWFu"
 #define THREE_OCTED_OUTPUT_INDICES { 19, 22, 5, 46 }
 
+typedef unsigned(*sextet_func)(const unsigned char*);
+
 void
 first_sextet_encoding_correctly(void) {
 	unsigned char input[] = THREE_OCTET_INPUT;
