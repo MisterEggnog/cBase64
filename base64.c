@@ -3,7 +3,7 @@
 
 static void size4_encode(const unsigned char* input, char* dest);
 
-static inline unsigned first_sextet(const unsigned char* input) {
+static inline unsigned char first_sextet(const unsigned char* input) {
 	return input[0] >> 2;
 }
 
