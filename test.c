@@ -28,7 +28,7 @@ first_sextet_encoding_correctly(void) {
 	unsigned output[] = THREE_OCTED_OUTPUT_INDICES;
 	unsigned result;
 
-	sextet_func fns[] = { first_sextet, };
+	sextet_func fns[] = { first_sextet, first_sextet, first_sextet, first_sextet};
 	char word_numbers[][10] = { "first", "second", "third", "fourth", };
 
 	result = fns[0](input);
