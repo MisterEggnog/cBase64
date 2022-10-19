@@ -29,6 +29,7 @@ first_sextet_encoding_correctly(void) {
 	unsigned result;
 
 	sextet_func fns[] = { first_sextet, };
+	char word_numbers[][10] = { "first", "second", "third", "fourth", };
 
 	result = fns[0](input);
 	TEST_CHECK(result == output[0]);
