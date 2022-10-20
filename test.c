@@ -31,9 +31,11 @@ first_sextet_encoding_correctly(void) {
 	sextet_func fns[] = { first_sextet, first_sextet, first_sextet, first_sextet};
 	char word_numbers[][10] = { "first", "second", "third", "fourth", };
 
-	result = fns[0](input);
-	TEST_CHECK(result == output[0]);
-	TEST_MSG("The first 6 bits of %d should be %d, not %d\n", input[0], output[0], result);
+	for (int i = 0; i < 4; i++) {
+		result = fns[i](input);
+		TEST_CHECK(result == output[i]);
+		TEST_MSG("The %s 6 bits of `%s` should be %d, not %d\n", word_numbers[i], input, output[i], result);
+	}
 }
 
 TEST_LIST = {
