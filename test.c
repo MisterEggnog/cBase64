@@ -32,6 +32,8 @@ first_sextet_encoding_correctly(void) {
 	char word_numbers[][10] = { "first", "second", "third", "fourth", };
 
 	for (int i = 0; i < 4; i++) {
+		TEST_CASE_("Read the %s 6 bits of 3 bytes", word_numbers[i]);
+
 		result = fns[i](input);
 		TEST_CHECK(result == output[i]);
 		TEST_MSG("The %s 6 bits of `%s` should be %d, not %d\n", word_numbers[i], input, output[i], result);
