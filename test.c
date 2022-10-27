@@ -28,7 +28,7 @@ string_to_octet_conversion_functions(void) {
 	unsigned output[] = THREE_OCTED_OUTPUT_INDICES;
 	unsigned result;
 
-	sextet_func fns[] = { first_sextet, first_sextet, first_sextet, first_sextet};
+	sextet_func fns[] = { first_sextet, second_sextet, first_sextet, first_sextet};
 	char word_numbers[][10] = { "first", "second", "third", "fourth", };
 
 	for (int i = 0; i < 4; i++) {
