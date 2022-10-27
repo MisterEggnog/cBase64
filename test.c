@@ -23,7 +23,7 @@ trivial_encode_4c(void) {
 typedef unsigned char(*sextet_func)(const unsigned char*);
 
 void
-first_sextet_encoding_correctly(void) {
+string_to_octet_conversion_functions(void) {
 	unsigned char input[] = THREE_OCTET_INPUT;
 	unsigned output[] = THREE_OCTED_OUTPUT_INDICES;
 	unsigned result;
@@ -42,6 +42,6 @@ first_sextet_encoding_correctly(void) {
 
 TEST_LIST = {
 	{ "trivial_encode_4c", trivial_encode_4c },
-	{ "Calculate first base64 number", first_sextet_encoding_correctly },
+	{ "string to octet conversion functions", string_to_octet_conversion_functions },
 	{ NULL, NULL },
 };
