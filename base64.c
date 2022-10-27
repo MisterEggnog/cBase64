@@ -15,6 +15,10 @@ static inline unsigned char third_sextet(const unsigned char* input) {
 	return (0x0F & input[1]) << 2 | input[2] >> 6;
 }
 
+static inline unsigned char fourth_sextet(const unsigned char* input) {
+	return 63 & input[2];
+}
+
 void
 base64_encode(const unsigned char input[], size_t len, char dest[]) {
 	switch (len) {
