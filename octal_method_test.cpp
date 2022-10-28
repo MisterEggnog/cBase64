@@ -9,12 +9,10 @@ get_octal_int(unsigned char input[]) {
 	 return (unsigned int)input[0] << 16 | (unsigned int)input[1] << 8 | (unsigned int)input[2];
 }
 
-// input must be size 4
 std::string
-get_octal_form(unsigned char input[]) {
-	auto twenty_fourbit = get_octal_int(input);
+get_octal_form(unsigned int input) {
 	auto string_builder = std::ostringstream();
-	string_builder << std::oct << std::setfill('0') << std::setw(8) << twenty_fourbit;
+	string_builder << std::oct << std::setfill('0') << std::setw(8) << input;
 	return string_builder.str();
 }
 
@@ -36,7 +34,7 @@ encoding_same_as_octal_method() {
 
 void
 get_octal_form_test() {
-	unsigned char input[] = "Man";
+	unsigned int input = 0x4d616e; // "Man"
 	auto result = get_octal_form(input);
 	TEST_CHECK(result == "19220546");
 	TEST_MSG("get_octal returned %s", result.c_str());
