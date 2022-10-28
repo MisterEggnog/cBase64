@@ -6,7 +6,7 @@
 
 unsigned int
 get_octal_int(unsigned char input[]) {
-	 return (unsigned int)input[0] << 16 | (unsigned int)input[1] << 8 | (unsigned int)input[0];
+	 return (unsigned int)input[0] << 16 | (unsigned int)input[1] << 8 | (unsigned int)input[2];
 }
 
 // input must be size 4
