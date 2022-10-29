@@ -1,5 +1,6 @@
 #include "base64.h"
 #include <acutest.h>
+#include <cstdio>
 #include <sstream>
 #include <random>
 #include <iomanip>
@@ -21,6 +22,8 @@ get_octal_form(unsigned int input) {
 // Will be written to
 void
 octal_encode(const std::string& octal, unsigned* output) {
+	std::sscanf(octal.c_str(), "%2o%2o%2o%2o", &(output[0]), &(output[1]),
+		&(output[2]), &(output[3]));
 }
 
 void
