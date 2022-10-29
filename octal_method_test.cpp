@@ -22,7 +22,7 @@ encoding_same_as_octal_method() {
 	auto rand = std::minstd_rand(7);
 	auto dist = std::uniform_int_distribution<unsigned char>(0);
 
-	for (int i = 0; i < 50; i++) {
+	for (int i = 0; i < 2; i++) {
 		unsigned char input[] = { dist(rand), dist(rand), dist(rand) };
 		char output[4];
 		unsigned joined_int = get_octal_int(input);
