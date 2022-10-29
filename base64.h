@@ -3,6 +3,10 @@
 
 #include <stddef.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif // __cplusplus
+
 #define BASE64_DIGITS "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/"
 #define PADDING "="
 
@@ -22,5 +26,9 @@ base64_encode(const unsigned char input[], size_t len, char dest[]);
 // Program may exit if input contains characters outside of BASE64_DIGITS or PADDING
 size_t
 base64_decode(const char input[], unsigned char dest[]);
+
+#ifdef __cplusplus
+}
+#endif // __cplusplus
 
 #endif // CBASE64STREAM_H_INCLUDED
