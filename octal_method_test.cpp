@@ -54,9 +54,22 @@ get_octal_int_test() {
 	TEST_MSG("get_octal_int returned %X", result);
 }
 
+void
+octal_encode_test() {
+	auto input = std::string("11111111");
+	unsigned expected[] = { 011, 011, 011, 011, };
+	unsigned result[4];
+	octal_encode(input, result);
+
+	for (int i = 0; i < 4; i++)
+		TEST_CHECK(expected[i] == result[0]);
+	TEST_MSG("Result is { %o, %o, %o, %o }", result[0], result[1], result[2], result[3]);
+}
+
 TEST_LIST = {
 	{ "get octal int test", get_octal_int_test },
 	{ "get octal form test", get_octal_form_test },
+	{ "octal encode test", octal_encode_test },
 	{ "Library encoding provides same result as octal method", encoding_same_as_octal_method },
 	{ NULL, NULL },
 };
