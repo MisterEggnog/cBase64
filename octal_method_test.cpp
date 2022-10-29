@@ -25,7 +25,7 @@ encoding_same_as_octal_method() {
 	for (int i = 0; i < 2; i++) {
 		unsigned char input[] = { dist(rand), dist(rand), dist(rand) };
 		char output[4];
-		unsigned joined_int = get_octal_int(input);
+		auto joined_int = get_octal_int(input);
 		auto octal_form = get_octal_form(joined_int);
 	}
 }
