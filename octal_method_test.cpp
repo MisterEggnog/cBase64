@@ -17,6 +17,12 @@ get_octal_form(unsigned int input) {
 	return string_builder.str();
 }
 
+// output must be 4 bytes
+// Will be written to
+void
+octal_encode(const std::string& octal, unsigned* output) {
+}
+
 void
 encoding_same_as_octal_method() {
 	auto rand = std::minstd_rand(7);
@@ -24,9 +30,10 @@ encoding_same_as_octal_method() {
 
 	for (int i = 0; i < 2; i++) {
 		unsigned char input[] = { dist(rand), dist(rand), dist(rand) };
-		char output[4];
+		unsigned encoded_indices[4];
 		auto joined_int = get_octal_int(input);
 		auto octal_form = get_octal_form(joined_int);
+
 	}
 }
 
