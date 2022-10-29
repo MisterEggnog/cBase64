@@ -20,16 +20,13 @@ get_octal_form(unsigned int input) {
 void
 encoding_same_as_octal_method() {
 	auto rand = std::minstd_rand(7);
-	auto dist = std::uniform_int_distribution<char>(-128);
-
-	unsigned char input[4] = "";
-	unsigned char output[4];
-	unsigned int twenty_fourbit;
+	auto dist = std::uniform_int_distribution<unsigned char>(0);
 
 	for (int i = 0; i < 50; i++) {
-		input[0] = dist(rand);
-		input[1] = dist(rand);
-		input[2] = dist(rand);
+		unsigned char input[] = { dist(rand), dist(rand), dist(rand) };
+		char output[4];
+		unsigned joined_int = get_octal_int(input);
+		auto octal_form = get_octal_form(joined_int);
 	}
 }
 
