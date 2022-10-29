@@ -26,17 +26,45 @@ octal_encode(const std::string& octal, unsigned* output) {
 		&(output[2]), &(output[3]));
 }
 
+inline bool
+indices_same(char result, unsigned indice) {
+	return result == BASE64_DIGITS[indice];
+}
+
+// size 4
+inline bool
+encoding_same(char result[], unsigned expected[]) {
+	return indices_same(result[0], expected[0]) && indices_same(result[1], expected[1])
+		&& indices_same(result[2], expected[2]) && indices_same(result[3], expected[3]);
+}
+
 void
 encoding_same_as_octal_method() {
 	auto rand = std::minstd_rand(7);
 	auto dist = std::uniform_int_distribution<unsigned char>(0);
+	bool exit_early = false;
 
 	for (int i = 0; i < 2; i++) {
 		unsigned char input[] = { dist(rand), dist(rand), dist(rand) };
 		unsigned encoded_indices[4];
 		auto joined_int = get_octal_int(input);
 		auto octal_form = get_octal_form(joined_int);
+		octal_encode(octal_form, encoded_indices);
 
+		char result[5] = "";
+		base64_encode(input, 3, result);
+
+		exit_early = !TEST_CHECK_(encoding_same(result, encoded_indices),
+			"Octal indices give different result than lib");
+		TEST_MSG("octal_result is [%c(%d), %c(%d), %c(%d), %c(%d)]",
+			BASE64_DIGITS[encoded_indices[0]], encoded_indices[0],
+			BASE64_DIGITS[encoded_indices[1]], encoded_indices[1],
+			BASE64_DIGITS[encoded_indices[2]], encoded_indices[2],
+			BASE64_DIGITS[encoded_indices[3]], encoded_indices[3]);
+		TEST_MSG("Library result \"%s\"", result);
+
+		if (exit_early)
+			break;
 	}
 }
 
