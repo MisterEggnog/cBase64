@@ -44,7 +44,7 @@ encoding_same_as_octal_method() {
 	auto dist = std::uniform_int_distribution<unsigned char>(0);
 	bool exit_early = false;
 
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < 50; i++) {
 		unsigned char input[] = { dist(rand), dist(rand), dist(rand) };
 		unsigned encoded_indices[4];
 		auto joined_int = get_octal_int(input);
