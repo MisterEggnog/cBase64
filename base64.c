@@ -6,7 +6,7 @@ static inline unsigned char first_sextet(const unsigned char* input) {
 }
 
 static inline unsigned char second_sextet(const unsigned char* input) {
-	return (0xfc ^ input[0]) << 4 | input[1] >> 4;
+	return (0x03 & input[0]) << 4 | input[1] >> 4;
 }
 
 static inline unsigned char third_sextet(const unsigned char* input) {
