@@ -40,8 +40,17 @@ string_to_octet_conversion_functions(void) {
 	}
 }
 
+void
+last_sextet_masks_correctly(void) {
+	unsigned char input[] = { 255, 255, 255 };
+	unsigned result = second_sextet(input);
+
+	TEST_CHECK(result == 63);
+}
+
 TEST_LIST = {
 	{ "trivial_encode_4c", trivial_encode_4c },
 	{ "string to octet conversion functions", string_to_octet_conversion_functions },
+	{ "Last sextet is properly masked", last_sextet_masks_correctly },
 	{ NULL, NULL },
 };
