@@ -103,7 +103,7 @@ octal_encode_test() {
 }
 
 void
-octal_fns_work_for_3_bytes() {
+octal_fns_work_for_2_bytes() {
 	TEST_CASE("24bit to octal string");
 	{
 		unsigned input = 0x4d6100; // "Ma"
@@ -116,7 +116,7 @@ TEST_LIST = {
 	{ "get octal int test", get_octal_int_test },
 	{ "get octal form test", get_octal_form_3_bytes_test },
 	{ "octal encode test", octal_encode_test },
-	{ "octal encode fns work for 3 bytes", octal_fns_work_for_3_bytes },
+	{ "octal encode fns work for 2 bytes", octal_fns_work_for_2_bytes },
 	{ "Library encoding provides same result as octal method", encoding_same_as_octal_method },
 	{ NULL, NULL },
 };
