@@ -69,12 +69,17 @@ encoding_same_as_octal_method() {
 }
 
 void
-get_octal_form_test() {
-	unsigned int input = 0x4d616e; // "Man"
-	auto octal_form_output = "23260556";
+get_octal_form_test(unsigned input, const char* octal_form_output) {
 	auto result = get_octal_form(input);
 	TEST_CHECK(result == octal_form_output);
 	TEST_MSG("get_octal returned %s", result.c_str());
+}
+
+void
+get_octal_form_3_bytes_test() {
+	unsigned int input = 0x4d616e; // "Man"
+	auto octal_form_output = "23260556";
+	get_octal_form_test(input, octal_form_output);
 }
 
 void
@@ -103,15 +108,13 @@ octal_fns_work_for_3_bytes() {
 	{
 		unsigned input = 0x4d6100; // "Ma"
 		auto octal_form_output = "23260400";
-		auto result = get_octal_form(input);
-		TEST_CHECK(result == octal_form_output);
-		TEST_MSG("get_octal returned %s", result.c_str());
+		get_octal_form_test(input, octal_form_output);
 	}
 }
 
 TEST_LIST = {
 	{ "get octal int test", get_octal_int_test },
-	{ "get octal form test", get_octal_form_test },
+	{ "get octal form test", get_octal_form_3_bytes_test },
 	{ "octal encode test", octal_encode_test },
 	{ "octal encode fns work for 3 bytes", octal_fns_work_for_3_bytes },
 	{ "Library encoding provides same result as octal method", encoding_same_as_octal_method },
