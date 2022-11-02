@@ -115,6 +115,13 @@ octal_fns_work_for_2_bytes() {
 		auto octal_form_output = "23260400";
 		get_octal_form_test(input, octal_form_output);
 	}
+
+	TEST_CASE("octal string to indices");
+	{
+		auto input = std::string("23260400");
+		unsigned expected[] = { 023, 026, 004, 000};
+		octal_encode_test(input, expected);
+	}
 }
 
 TEST_LIST = {
