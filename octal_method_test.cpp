@@ -96,7 +96,7 @@ octal_encode_test(const std::string& input, unsigned expected[]) {
 	octal_encode(input, result);
 
 	for (int i = 0; i < 4; i++)
-		TEST_CHECK(expected[i] == result[0]);
+		TEST_CHECK(expected[i] == result[i]);
 	TEST_MSG("Result is { %o, %o, %o, %o }", result[0], result[1], result[2], result[3]);
 }
 
