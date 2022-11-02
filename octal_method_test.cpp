@@ -97,10 +97,23 @@ octal_encode_test() {
 	TEST_MSG("Result is { %o, %o, %o, %o }", result[0], result[1], result[2], result[3]);
 }
 
+void
+octal_fns_work_for_3_bytes() {
+	TEST_CASE("24bit to octal string");
+	{
+		unsigned input = 0x4d6100; // "Ma"
+		auto octal_form_output = "23260400";
+		auto result = get_octal_form(input);
+		TEST_CHECK(result == octal_form_output);
+		TEST_MSG("get_octal returned %s", result.c_str());
+	}
+}
+
 TEST_LIST = {
 	{ "get octal int test", get_octal_int_test },
 	{ "get octal form test", get_octal_form_test },
 	{ "octal encode test", octal_encode_test },
+	{ "octal encode fns work for 3 bytes", octal_fns_work_for_3_bytes },
 	{ "Library encoding provides same result as octal method", encoding_same_as_octal_method },
 	{ NULL, NULL },
 };
