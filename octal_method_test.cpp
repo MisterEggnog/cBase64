@@ -26,6 +26,11 @@ octal_encode(const std::string& octal, unsigned* output) {
 		&(output[2]), &(output[3]));
 }
 
+std::string
+encode_form(const unsigned* indices, int length) {
+	return "";
+}
+
 inline bool
 indices_same(char result, unsigned indice) {
 	return result == BASE64_DIGITS[indice];
@@ -108,6 +113,19 @@ octal_encode_test(const std::string& input, unsigned expected[]) {
 }
 
 void
+encodes_string_in_base64() {
+	unsigned input[] = { 0, 0, 0, 0 };
+	char results[][5] = { "0000", "000=", "00==", "0===" };
+	std::string result;
+	for (int i = 0; i < 4; i++) {
+		TEST_CASE_("length %d", i);
+		result = encode_form(input, i);
+		TEST_CHECK(result == results[i]);
+		TEST_MSG("Result was %s, should have been %s", result.c_str(), results[i]);
+	}
+}
+
+void
 octal_encode_3_bytes_test() {
 	auto input = std::string("11111111");
 	unsigned expected[] = { 011, 011, 011, 011, };
@@ -135,6 +153,7 @@ TEST_LIST = {
 	{ "get octal int test", get_octal_int_test },
 	{ "get octal form test", get_octal_form_3_bytes_test },
 	{ "octal encode test", octal_encode_3_bytes_test },
+	{ "encode_string_in_base64", encodes_string_in_base64 },
 	{ "octal encode fns work for 2 bytes", octal_fns_work_for_2_bytes },
 	{ "Library encoding provides same result as octal method", encoding_same_as_octal_method },
 	{ NULL, NULL },
