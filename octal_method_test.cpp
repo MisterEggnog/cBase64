@@ -28,7 +28,14 @@ octal_encode(const std::string& octal, unsigned* output) {
 
 std::string
 encode_form(const unsigned* indices, int length) {
-	return "";
+	auto encoded_str = std::string(4, '=');
+	encoded_str.at(0) = BASE64_DIGITS[indices[0]];
+	encoded_str.at(1) = BASE64_DIGITS[indices[1]];
+	if (length > 2)
+		encoded_str.at(2) = BASE64_DIGITS[indices[2]];
+	if (length == 4)
+		encoded_str.at(3) = BASE64_DIGITS[indices[3]];
+	return encoded_str;
 }
 
 inline bool
@@ -122,6 +129,7 @@ encodes_string_in_base64() {
 		result = encode_form(input, 4 - i);
 		TEST_CHECK(result == results[i]);
 		TEST_MSG("Result was %s, should have been %s", result.c_str(), results[i]);
+		TEST_MSG("Indices is %d", 4 - i);
 	}
 }
 
