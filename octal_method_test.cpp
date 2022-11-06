@@ -53,24 +53,29 @@ encoding_same(char result[], unsigned expected[]) {
 bool
 test_encoding(unsigned char* input) {
 	unsigned encoded_indices[4];
-	auto joined_int = get_octal_int(input);
-	auto octal_form = get_octal_form(joined_int);
-	octal_encode(octal_form, encoded_indices);
-	auto octal_str = encode_form(encoded_indices, 4);
 
-	char result[5] = "";
-	base64_encode(input, 3, result);
+	for (int i = 3; i > 0; i--) {
+		auto joined_int = get_octal_int(input);
+		auto octal_form = get_octal_form(joined_int);
+		octal_encode(octal_form, encoded_indices);
+		auto octal_str = encode_form(encoded_indices, 4);
 
-	bool exit_early = !TEST_CHECK_(encoding_same(result, encoded_indices),
-		"Octal indices give different result than lib");
-	TEST_MSG("octal_result is [%c(%d), %c(%d), %c(%d), %c(%d)]",
-		octal_str[encoded_indices[0]], encoded_indices[0],
-		octal_str[encoded_indices[1]], encoded_indices[1],
-		octal_str[encoded_indices[2]], encoded_indices[2],
-		octal_str[encoded_indices[3]], encoded_indices[3]);
-	TEST_MSG("Library result \"%s\"", result);
+		char result[5] = "";
+		base64_encode(input, 3, result);
 
-	return exit_early;
+		bool exit_early = !TEST_CHECK_(encoding_same(result, encoded_indices),
+			"Octal indices give different result than lib");
+		TEST_MSG("octal_result is [%c(%d), %c(%d), %c(%d), %c(%d)]",
+			octal_str[encoded_indices[0]], encoded_indices[0],
+			octal_str[encoded_indices[1]], encoded_indices[1],
+			octal_str[encoded_indices[2]], encoded_indices[2],
+			octal_str[encoded_indices[3]], encoded_indices[3]);
+		TEST_MSG("Library result \"%s\"", result);
+		if (exit_early)
+			return true;
+	}
+
+	return false;
 }
 
 void
