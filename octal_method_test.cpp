@@ -1,5 +1,6 @@
 #include "base64.h"
 #include <acutest.h>
+#include <array>
 #include <cstdio>
 #include <sstream>
 #include <random>
@@ -48,6 +49,12 @@ inline bool
 encoding_same(char result[], unsigned expected[]) {
 	return indices_same(result[0], expected[0]) && indices_same(result[1], expected[1])
 		&& indices_same(result[2], expected[2]) && indices_same(result[3], expected[3]);
+}
+
+typedef std::array<unsigned char, 3>(*ArrayFiller)(std::minstd_rand);
+
+void
+encoding_same_as_octal_method(ArrayFiller fn, int length) {
 }
 
 void
