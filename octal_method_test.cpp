@@ -5,6 +5,7 @@
 #include <sstream>
 #include <random>
 #include <iomanip>
+#include <functional>
 
 unsigned int
 get_octal_int(unsigned char input[]) {
@@ -51,7 +52,8 @@ encoding_same(char result[], unsigned expected[]) {
 		&& indices_same(result[2], expected[2]) && indices_same(result[3], expected[3]);
 }
 
-typedef std::array<unsigned char, 3>(*ArrayFiller)(std::minstd_rand);
+using char_array = std::array<unsigned char, 3>;
+using ArrayFiller = std::function<char_array(std::minstd_rand)>;
 
 void
 encoding_same_as_octal_method(ArrayFiller fn, int length) {
