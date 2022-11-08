@@ -53,7 +53,7 @@ encoding_same(char result[], unsigned expected[]) {
 }
 
 using char_array = std::array<unsigned char, 3>;
-using ArrayFiller = std::function<char_array(std::minstd_rand)>;
+using ArrayFiller = std::function<char_array(std::minstd_rand&)>;
 
 void
 encoding_same_as_octal_method(ArrayFiller fn, int length) {
