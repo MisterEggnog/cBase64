@@ -66,10 +66,10 @@ encoding_same_as_octal_method(ArrayFiller fn, int length) {
 		auto joined_int = get_octal_int(input.data());
 		auto octal_form = get_octal_form(joined_int);
 		octal_encode(octal_form, encoded_indices);
-		auto octal_str = encode_form(encoded_indices, 4);
+		auto octal_str = encode_form(encoded_indices, length + 1);
 
 		char result[5] = "";
-		base64_encode(input.data(), 3, result);
+		base64_encode(input.data(), length, result);
 
 		exit_early = !TEST_CHECK_(encoding_same(result, encoded_indices),
 			"Octal indices give different result than lib");
