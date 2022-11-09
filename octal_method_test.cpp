@@ -58,19 +58,18 @@ using ArrayFiller = std::function<char_array(std::minstd_rand&)>;
 void
 encoding_same_as_octal_method(ArrayFiller fn, int length) {
 	auto rand = std::minstd_rand(7);
-	auto dist = std::uniform_int_distribution<unsigned char>(0);
 	bool exit_early = false;
 
 	for (int i = 0; i < 50; i++) {
-		unsigned char input[] = { dist(rand), dist(rand), dist(rand) };
+		auto input = fn(rand);
 		unsigned encoded_indices[4];
-		auto joined_int = get_octal_int(input);
+		auto joined_int = get_octal_int(input.data());
 		auto octal_form = get_octal_form(joined_int);
 		octal_encode(octal_form, encoded_indices);
 		auto octal_str = encode_form(encoded_indices, 4);
 
 		char result[5] = "";
-		base64_encode(input, 3, result);
+		base64_encode(input.data(), 3, result);
 
 		exit_early = !TEST_CHECK_(encoding_same(result, encoded_indices),
 			"Octal indices give different result than lib");
@@ -89,7 +88,8 @@ encoding_same_as_octal_method(ArrayFiller fn, int length) {
 void
 encoding_same_as_octal_method() {
 	encoding_same_as_octal_method([](auto& rng) {
-		char_array arr;
+		auto dist = std::uniform_int_distribution<unsigned char>(0);
+		char_array arr { dist(rng), dist(rng), dist(rng) };
 		return arr;
 	}, 3);
 }
