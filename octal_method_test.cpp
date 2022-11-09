@@ -71,13 +71,13 @@ encoding_same_as_octal_method(ArrayFiller fn, int length) {
 		char result[5] = "";
 		base64_encode(input.data(), length, result);
 
-		exit_early = !TEST_CHECK_(encoding_same(result, encoded_indices),
+		exit_early = !TEST_CHECK_(octal_str == result,
 			"Octal indices give different result than lib");
 		TEST_MSG("octal_result is [%c(%d), %c(%d), %c(%d), %c(%d)]",
-			octal_str[encoded_indices[0]], encoded_indices[0],
-			octal_str[encoded_indices[1]], encoded_indices[1],
-			octal_str[encoded_indices[2]], encoded_indices[2],
-			octal_str[encoded_indices[3]], encoded_indices[3]);
+			octal_str[0], encoded_indices[0],
+			octal_str[1], encoded_indices[1],
+			octal_str[2], encoded_indices[2],
+			octal_str[3], encoded_indices[3]);
 		TEST_MSG("Library result \"%s\"", result);
 
 		if (exit_early)
