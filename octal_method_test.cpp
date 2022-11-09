@@ -86,7 +86,7 @@ encoding_same_as_octal_method(ArrayFiller fn, int length) {
 }
 
 void
-encoding_same_as_octal_method() {
+three_byte_encoding() {
 	encoding_same_as_octal_method([](auto& rng) {
 		auto dist = std::uniform_int_distribution<unsigned char>(0);
 		char_array arr { dist(rng), dist(rng), dist(rng) };
@@ -170,6 +170,6 @@ TEST_LIST = {
 	{ "octal encode test", octal_encode_3_bytes_test },
 	{ "encode_string_in_base64", encodes_string_in_base64 },
 	{ "octal encode fns work for 2 bytes", octal_fns_work_for_2_bytes },
-	{ "Library encoding provides same result as octal method", encoding_same_as_octal_method },
+	{ "three_byte_encoding", three_byte_encoding },
 	{ NULL, NULL },
 };
