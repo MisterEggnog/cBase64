@@ -57,10 +57,6 @@ using ArrayFiller = std::function<char_array(std::minstd_rand&)>;
 
 void
 encoding_same_as_octal_method(ArrayFiller fn, int length) {
-}
-
-void
-encoding_same_as_octal_method() {
 	auto rand = std::minstd_rand(7);
 	auto dist = std::uniform_int_distribution<unsigned char>(0);
 	bool exit_early = false;
@@ -88,6 +84,14 @@ encoding_same_as_octal_method() {
 		if (exit_early)
 			break;
 	}
+}
+
+void
+encoding_same_as_octal_method() {
+	encoding_same_as_octal_method([](auto& rng) {
+		char_array arr;
+		return arr;
+	}, 3);
 }
 
 void
