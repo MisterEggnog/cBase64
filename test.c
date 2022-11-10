@@ -15,6 +15,20 @@ trivial_encode_4c(void) {
 	TEST_MSG("Trivial encoding should be `0000`, result was `%s`\n", output);
 }
 
+void
+smaller_input_sizes(void) {
+	unsigned char input[5] = "";
+	char output[5] = "";
+	char results[][5] = { "00==", "000=" };
+
+	for (int i = 0; i < 2; i++) {
+		TEST_CASE_("%d bytes", i + 1);
+		base64_encode(input, i + 1, output);
+		TEST_CHECK(strcmp(output, results[i]) == 0);
+		TEST_MSG("Result was %s, expected %s", output, results[i]);
+	}
+}
+
 // From wikipedia page for base64
 #define THREE_OCTET_INPUT "Man"
 #define THREE_OCTET_OUTPUT "TWFu"
@@ -50,6 +64,7 @@ last_sextet_masks_correctly(void) {
 
 TEST_LIST = {
 	{ "trivial_encode_4c", trivial_encode_4c },
+	{ "smaller_input_sizes", smaller_input_sizes },
 	{ "string to octet conversion functions", string_to_octet_conversion_functions },
 	{ "Last sextet is properly masked", last_sextet_masks_correctly },
 	{ NULL, NULL },
