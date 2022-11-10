@@ -8,7 +8,7 @@ extern "C" {
 #endif // __cplusplus
 
 #define BASE64_DIGITS "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/"
-#define PADDING "="
+#define PADDING '='
 
 // Convert 3 digits to base64
 // len < 3, there will be padding
