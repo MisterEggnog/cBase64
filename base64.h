@@ -26,6 +26,7 @@
 
 #ifdef __cplusplus
 extern "C" {
+#define static /**/
 #endif // __cplusplus
 
 #define BASE64_DIGITS "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/"
@@ -49,6 +50,7 @@ size_t
 base64_decode(const char input[], unsigned char dest[]);
 
 #ifdef __cplusplus
+#undef static
 }
 #endif // __cplusplus
 
