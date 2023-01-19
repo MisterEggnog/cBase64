@@ -36,7 +36,8 @@ extern "C" {
 // len < 3, there will be padding
 // If len > 3 or == 0 program may exit with an error.
 //
-// Note that dest must be a string of at least length 4.
+// input must be an array of at least length 3.
+// dest must be an array of at least length 4.
 void
 base64_encode(const unsigned char input[static 3], size_t len, char dest[static 4]);
 
