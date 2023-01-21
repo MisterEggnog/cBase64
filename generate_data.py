@@ -17,7 +17,7 @@ def generate_b64() -> Tuple[int, str, str, str]:
 	return (data, str(three_bytes, 'utf-8'), str(two_bytes, 'utf-8'), str(one_bytes, 'utf-8'))
 
 def b64_print(tup):
-	pass
+	print("{:03X}|{}|{}|{}".format(tup[0], tup[1], tup[2], tup[3]))
 
 seed(6)
 b64 = generate_b64()
