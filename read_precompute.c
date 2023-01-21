@@ -1,4 +1,5 @@
 #include <acutest.h>
+#include <string.h>
 #include <stdio.h>
 
 struct base64_precompute {
@@ -25,6 +26,9 @@ read_into_table_test(void) {
 	for (int i = 0; i < 3; i++)
 		TEST_CHECK(result.raw[i] == expected_bytes[i]);
 	TEST_MSG("Result was supposed to be 0xABCDEF, not 0x%hhX%hhX%hhX", result.raw[0], result.raw[1], result.raw[2]);
+
+	TEST_CHECK(strcmp(result.three_length, "abcd") == 0);
+	TEST_MSG("result three str was not \"abcd\"");
 
 	fclose(temp_file);
 }
