@@ -17,5 +17,8 @@ octal_method_test.o: octal_method_test.cpp base64.h
 $(OCTALTEST): base64.o octal_method_test.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
+file.ctv: generate_data.py
+	./generate_data.py > file.ctv
+
 clean:
 	$(RM) $(TARGET) $(OCTALTEST)
