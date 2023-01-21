@@ -16,5 +16,10 @@ def generate_b64() -> Tuple[int, str, str, str]:
 	
 	return (data, str(three_bytes, 'utf-8'), str(two_bytes, 'utf-8'), str(one_bytes, 'utf-8'))
 
+def b64_print(tup):
+	pass
+
 seed(6)
-print(generate_b64())
+b64 = generate_b64()
+print(b64)
+b64_print(b64)
