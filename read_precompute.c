@@ -21,6 +21,11 @@ read_into_table_test(void) {
 	struct base64_precompute result;
 	read_base64_data(temp_file, &result);
 
+	unsigned char expected_bytes[] = { 0xAB, 0xCD, 0xEF };
+	for (int i = 0; i < 3; i++)
+		TEST_CHECK(result.raw[i] == expected_bytes[i]);
+	TEST_MSG("Result was supposed to be 0xABCDEF, not 0x%hhX%hhX%hhX", result.raw[0], result.raw[1], result.raw[2]);
+
 	fclose(temp_file);
 }
 
