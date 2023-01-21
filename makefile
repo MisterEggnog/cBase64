@@ -20,5 +20,8 @@ $(OCTALTEST): base64.o octal_method_test.o
 file.ctv: generate_data.py
 	./generate_data.py > file.ctv
 
+precompute_test: read_precompute.c file.ctv
+	$(CC) -o $@ $(CFLAGS) $<
+
 clean:
 	$(RM) $(TARGET) $(OCTALTEST)
