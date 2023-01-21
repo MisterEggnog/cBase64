@@ -4,9 +4,9 @@
 
 struct base64_precompute {
 	unsigned char raw[3];
-	char three_length[4];
-	char two_length[4];
-	char one_length[4];
+	char three_str[4];
+	char two_str[4];
+	char one_str[4];
 };
 
 void read_base64_data(FILE* source, struct base64_precompute* dest) {
@@ -27,7 +27,7 @@ read_into_table_test(void) {
 		TEST_CHECK(result.raw[i] == expected_bytes[i]);
 	TEST_MSG("Result was supposed to be 0xABCDEF, not 0x%hhX%hhX%hhX", result.raw[0], result.raw[1], result.raw[2]);
 
-	TEST_CHECK(strcmp(result.three_length, "abcd") == 0);
+	TEST_CHECK(strcmp(result.three_str, "abcd") == 0);
 	TEST_MSG("result three str was not \"abcd\"");
 
 	fclose(temp_file);
