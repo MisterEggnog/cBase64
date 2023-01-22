@@ -13,6 +13,10 @@ void read_base64_data(FILE* source, struct base64_precompute* dest) {
 }
 
 #define RESULT_ERR_STR "result %s str was not \"%s\""
+#define TEST_STR_IS_RIGHT(field_name, num, expstr) { \
+	TEST_CHECK(strcmp(result.field_name, expstr) == 0); \
+	TEST_MSG(RESULT_ERR_STR, num, expstr); \
+}
 
 void
 read_into_table_test(void) {
@@ -28,8 +32,7 @@ read_into_table_test(void) {
 		TEST_CHECK(result.raw[i] == expected_bytes[i]);
 	TEST_MSG("Result was supposed to be 0xABCDEF, not 0x%02hhX%02hhX%02hhX", result.raw[0], result.raw[1], result.raw[2]);
 
-	TEST_CHECK(strcmp(result.three_str, "abcd") == 0);
-	TEST_MSG(RESULT_ERR_STR, "three", "abcd");
+	TEST_STR_IS_RIGHT(three_str, "three", "abcd");
 
 	fclose(temp_file);
 }
