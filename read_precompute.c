@@ -33,6 +33,8 @@ read_into_table_test(void) {
 	TEST_MSG("Result was supposed to be 0xABCDEF, not 0x%02hhX%02hhX%02hhX", result.raw[0], result.raw[1], result.raw[2]);
 
 	TEST_STR_IS_RIGHT(three_str, "three", "abcd");
+	TEST_STR_IS_RIGHT(two_str, "two", "abc=");
+	TEST_STR_IS_RIGHT(one_str, "one", "ab==");
 
 	fclose(temp_file);
 }
