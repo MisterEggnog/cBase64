@@ -12,6 +12,7 @@ struct base64_precompute {
 void read_base64_data(FILE* source, struct base64_precompute* dest) {
 }
 
+#define RESULT_ERR_STR "result %s str was not \"abcd\""
 
 void
 read_into_table_test(void) {
@@ -28,7 +29,7 @@ read_into_table_test(void) {
 	TEST_MSG("Result was supposed to be 0xABCDEF, not 0x%hhX%hhX%hhX", result.raw[0], result.raw[1], result.raw[2]);
 
 	TEST_CHECK(strcmp(result.three_str, "abcd") == 0);
-	TEST_MSG("result three str was not \"abcd\"");
+	TEST_MSG(RESULT_ERR_STR, "three");
 
 	fclose(temp_file);
 }
