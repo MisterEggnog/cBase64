@@ -1,4 +1,5 @@
 #include <acutest.h>
+#include <assert.h>
 #include <string.h>
 #include <stdio.h>
 
@@ -9,7 +10,11 @@ struct base64_precompute {
 	char one_str[5];
 };
 
-void read_base64_data(FILE* source, struct base64_precompute* dest) {
+int read_base64_data(FILE* source, struct base64_precompute* dest) {
+	int amount_read = fscanf(source, "%2hhx%2hhx%2hhx|%4s|%4s|%4s", &dest->raw[0], &dest->raw[1], &dest->raw[2], dest->three_str, dest->two_str, dest->one_str);
+
+	assert(amount_read == 6 || amount_read == EOF);
+	return amount_read;
 }
 
 #define RESULT_ERR_STR "result %s str was not \"%s\""
@@ -25,7 +30,8 @@ read_into_table_test(void) {
 	rewind(temp_file);
 
 	struct base64_precompute result;
-	read_base64_data(temp_file, &result);
+	TEST_CHECK(read_base64_data(temp_file, &result) == 6);
+	TEST_MSG("Successful read should return 6.");
 
 	unsigned char expected_bytes[] = { 0xAB, 0xCD, 0xEF };
 	for (int i = 0; i < 3; i++)
