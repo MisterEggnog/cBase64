@@ -4,9 +4,9 @@
 
 struct base64_precompute {
 	unsigned char raw[3];
-	char three_str[4];
-	char two_str[4];
-	char one_str[4];
+	char three_str[5];
+	char two_str[5];
+	char one_str[5];
 };
 
 void read_base64_data(FILE* source, struct base64_precompute* dest) {
