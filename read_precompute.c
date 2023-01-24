@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include "base64.h"
 
 struct base64_precompute {
 	unsigned char raw[3];
@@ -30,6 +31,7 @@ test_3_byte_decode(void) {
 	while (read_base64_data(input_data, &data) != EOF) {
 		bool stop = false;
 		unsigned char raw[3] = "";
+		base64_decode(data.three_str, raw);
 		for (int i = 0; i < 3; i++)
 			stop = !TEST_CHECK(raw[i] == data.raw[i]) || stop;
 		TEST_MSG("Expected raw to be [%x, %x, %x], was [%x, %x, %x].", data.raw[0], data.raw[1], data.raw[2], raw[0], raw[1], raw[2]);
