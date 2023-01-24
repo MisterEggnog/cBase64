@@ -26,9 +26,7 @@ test_3_byte_decode(void) {
 	FILE* data = fopen(DATA_FILE, "r");
 	setbuf(data, buffer);
 
-	for (int i = 0; i < 50; i++) {
-		if (read_base64_data(data, &read_data) == EOF)
-			break;
+	while (read_base64_data(data, &read_data) != EOF) {
 		// call func
 	}
 
