@@ -54,3 +54,8 @@ base64_encode(const unsigned char input[], size_t len, char dest[]) {
 			break;
 	}
 }
+
+size_t
+base64_decode(const char input[], unsigned char dest[]) {
+	// TODO
+}
