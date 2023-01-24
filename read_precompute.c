@@ -17,6 +17,24 @@ int read_base64_data(FILE* source, struct base64_precompute* dest) {
 	return amount_read;
 }
 
+#define DATA_FILE ("file.ctv")
+
+void
+test_3_byte_decode(void) {
+	char buffer[BUFSIZ];
+	struct base64_precompute read_data;
+	FILE* data = fopen(DATA_FILE, "r");
+	setbuf(data, buffer);
+
+	for (int i = 0; i < 50; i++) {
+		if (read_base64_data(data, &read_data) == EOF)
+			break;
+		// call func
+	}
+
+	fclose(data);
+}
+
 #define RESULT_ERR_STR "result %s str was not \"%s\""
 #define TEST_STR_IS_RIGHT(field_name, num, expstr) { \
 	TEST_CHECK(strcmp(result.field_name, expstr) == 0); \
@@ -46,6 +64,7 @@ read_into_table_test(void) {
 }
 
 TEST_LIST = {
+	{ "test_3_byte_decode", test_3_byte_decode },
 	{ "read_into_table_test", read_into_table_test },
 	{ NULL, NULL },
 };
