@@ -2,6 +2,7 @@
 #include <assert.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 struct base64_precompute {
 	unsigned char raw[3];
@@ -22,15 +23,23 @@ int read_base64_data(FILE* source, struct base64_precompute* dest) {
 void
 test_3_byte_decode(void) {
 	char buffer[BUFSIZ];
-	struct base64_precompute read_data;
-	FILE* data = fopen(DATA_FILE, "r");
-	setbuf(data, buffer);
+	struct base64_precompute data;
+	FILE* input_data = fopen(DATA_FILE, "r");
+	setbuf(input_data, buffer);
 
-	while (read_base64_data(data, &read_data) != EOF) {
-		// call func
+	while (read_base64_data(input_data, &data) != EOF) {
+		bool stop = false;
+		unsigned char raw[3] = "";
+		for (int i = 0; i < 3; i++)
+			stop = !TEST_CHECK(raw[i] == data.raw[i]) || stop;
+		TEST_MSG("Expected raw to be [%x, %x, %x], was [%x, %x, %x].", data.raw[0], data.raw[1], data.raw[2], raw[0], raw[1], raw[2]);
+		TEST_MSG("given source string \"%s\"", data.three_str);
+
+		if (stop)
+			break;
 	}
 
-	fclose(data);
+	fclose(input_data);
 }
 
 #define RESULT_ERR_STR "result %s str was not \"%s\""
