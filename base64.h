@@ -29,7 +29,8 @@ extern "C" {
 #define static /**/
 #endif // __cplusplus
 
-#define BASE64_DIGITS "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/"
+// RFC 4648 §4
+#define BASE64_DIGITS "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 #define PADDING '='
 
 // Convert 3 digits to base64
