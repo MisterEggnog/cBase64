@@ -147,7 +147,7 @@ octal_encode_test(const std::string& input, unsigned expected[]) {
 void
 encodes_string_in_base64() {
 	unsigned input[] = { 0, 0, 0, 0 };
-	char results[][5] = { "0000", "000=", "00==" };
+	char results[][5] = { "AAAA", "AAA=", "AA==" };
 	std::string result;
 	for (int i = 0; i < 3; i++) {
 		TEST_CASE_("length %d", i);
