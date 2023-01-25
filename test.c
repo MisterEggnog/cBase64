@@ -11,15 +11,15 @@ trivial_encode_4c(void) {
 
 	base64_encode(input, 3, output);
 
-	TEST_CHECK(strcmp(output, "0000") == 0);
-	TEST_MSG("Trivial encoding should be `0000`, result was `%s`\n", output);
+	TEST_CHECK(strcmp(output, "AAAA") == 0);
+	TEST_MSG("Trivial encoding should be `AAAA`, result was `%s`\n", output);
 }
 
 void
 smaller_input_sizes(void) {
 	unsigned char input[5] = "";
 	char output[5] = "";
-	char results[][5] = { "00==", "000=" };
+	char results[][5] = { "AA==", "AAA=" };
 
 	for (int i = 0; i < 2; i++) {
 		TEST_CASE_("%d bytes", i + 1);
