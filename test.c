@@ -73,11 +73,21 @@ fail_decode_if_given_garbage(void) {
 	TEST_MSG("Garbage should return with a negative value");
 }
 
+void
+halt_decode_if_given_whitespace(void) {
+	char encoded[] = "    ";
+	unsigned char raw[3];
+
+	TEST_CHECK(base64_decode(encoded, raw) == 0);
+	TEST_MSG("whitespace should return 0");
+}
+
 TEST_LIST = {
 	{ "trivial_encode_4c", trivial_encode_4c },
 	{ "smaller_input_sizes", smaller_input_sizes },
 	{ "string to octet conversion functions", string_to_octet_conversion_functions },
 	{ "Last sextet is properly masked", last_sextet_masks_correctly },
 	{ "fail_decode_if_given_garbage", fail_decode_if_given_garbage },
+	{ "halt_decode_if_given_whitespace", halt_decode_if_given_whitespace },
 	{ NULL, NULL },
 };
