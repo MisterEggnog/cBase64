@@ -55,6 +55,11 @@ base64_encode(const unsigned char input[], size_t len, char dest[]) {
 	}
 }
 
+static inline int
+in_alphabet(char c) {
+	return 0;
+}
+
 size_t
 base64_decode(const char encoded[], unsigned char raw[]) {
 	// TODO
