@@ -71,6 +71,16 @@ in_alphabet_fails_when_not_b64(void) {
 }
 
 void
+in_alphabet_works_when_b64(void) {
+	char b64_chars[] = BASE64_DIGITS;
+	for (int i = 0; i < sizeof b64_chars; i++) {
+		TEST_CASE_("%c", b64_chars[i]);
+		if (!TEST_CHECK(in_alphabet(b64_chars[i])))
+			break;
+	}
+}
+
+void
 fail_decode_if_given_garbage(void) {
 	char encoded[] = "[[[[";
 	unsigned char raw[3];
@@ -94,6 +104,7 @@ TEST_LIST = {
 	{ "string to octet conversion functions", string_to_octet_conversion_functions },
 	{ "Last sextet is properly masked", last_sextet_masks_correctly },
 	{ "in_alphabet_fails_when_not_b64", in_alphabet_fails_when_not_b64 },
+	{ "in_alphabet_works_when_b64", in_alphabet_works_when_b64 },
 	{ "fail_decode_if_given_garbage", fail_decode_if_given_garbage },
 	{ "halt_decode_if_given_whitespace", halt_decode_if_given_whitespace },
 	{ NULL, NULL },
