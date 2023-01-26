@@ -58,7 +58,7 @@ base64_encode(const unsigned char input[], size_t len, char dest[]) {
 
 static inline int
 in_alphabet(char c) {
-	return isalnum(c) || c == '+' || c == '/';
+	return isalnum(c) || c == '+' || c == '/' || c == PADDING;
 }
 
 size_t

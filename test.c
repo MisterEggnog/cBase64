@@ -71,6 +71,11 @@ in_alphabet_fails_when_not_b64(void) {
 }
 
 void
+in_alphabet_accepts_padding(void) {
+	TEST_CHECK(in_alphabet(PADDING));
+}
+
+void
 in_alphabet_works_when_b64(void) {
 	char b64_chars[] = BASE64_DIGITS;
 	for (int i = 0; i < strlen(b64_chars); i++) {
@@ -104,6 +109,7 @@ TEST_LIST = {
 	{ "string to octet conversion functions", string_to_octet_conversion_functions },
 	{ "Last sextet is properly masked", last_sextet_masks_correctly },
 	{ "in_alphabet_fails_when_not_b64", in_alphabet_fails_when_not_b64 },
+	{ "in_alphabet_accepts_padding", in_alphabet_accepts_padding },
 	{ "in_alphabet_works_when_b64", in_alphabet_works_when_b64 },
 	{ "fail_decode_if_given_garbage", fail_decode_if_given_garbage },
 	{ "halt_decode_if_given_whitespace", halt_decode_if_given_whitespace },
