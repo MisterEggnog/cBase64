@@ -20,6 +20,7 @@
  * IN THE SOFTWARE.
  */
 #include "base64.h"
+#include <ctype.h>
 
 static inline unsigned char first_sextet(const unsigned char* input) {
 	return input[0] >> 2;
@@ -57,7 +58,7 @@ base64_encode(const unsigned char input[], size_t len, char dest[]) {
 
 static inline int
 in_alphabet(char c) {
-	return 0;
+	return isalnum(c) || c == '+' || c == '/';
 }
 
 size_t

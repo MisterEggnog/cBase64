@@ -73,9 +73,9 @@ in_alphabet_fails_when_not_b64(void) {
 void
 in_alphabet_works_when_b64(void) {
 	char b64_chars[] = BASE64_DIGITS;
-	for (int i = 0; i < sizeof b64_chars; i++) {
+	for (int i = 0; i < strlen(b64_chars); i++) {
 		TEST_CASE_("%c", b64_chars[i]);
-		if (!TEST_CHECK(in_alphabet(b64_chars[i])))
+		if (!TEST_CHECK_(in_alphabet(b64_chars[i]), "%c", b64_chars[i]))
 			break;
 	}
 }
