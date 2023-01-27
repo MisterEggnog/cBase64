@@ -65,8 +65,8 @@ last_sextet_masks_correctly(void) {
 // decode tests
 
 void
-in_alphabet_fails_when_not_b64(void) {
-	TEST_CHECK(in_alphabet(';'));
+in_alphabet_return_false_4_garbage(void) {
+	TEST_CHECK(!in_alphabet(';'));
 	TEST_MSG("in_alphabet should fail for \';\'");
 }
 
@@ -108,7 +108,7 @@ TEST_LIST = {
 	{ "smaller_input_sizes", smaller_input_sizes },
 	{ "string to octet conversion functions", string_to_octet_conversion_functions },
 	{ "Last sextet is properly masked", last_sextet_masks_correctly },
-	{ "in_alphabet_fails_when_not_b64", in_alphabet_fails_when_not_b64 },
+	{ "in_alphabet_return_false_4_garbage", in_alphabet_return_false_4_garbage },
 	{ "in_alphabet_accepts_padding", in_alphabet_accepts_padding },
 	{ "in_alphabet_works_when_b64", in_alphabet_works_when_b64 },
 	{ "fail_decode_if_given_garbage", fail_decode_if_given_garbage },
