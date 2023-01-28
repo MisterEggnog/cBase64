@@ -61,6 +61,9 @@ in_alphabet(char c) {
 	return isalnum(c) || c == '+' || c == '/' || c == PADDING;
 }
 
+#define INVALID_CHAR (-1)
+#define WHITESPACE (-2)
+
 size_t
 base64_decode(const char encoded[], unsigned char raw[]) {
 	// TODO
