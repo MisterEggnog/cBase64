@@ -76,6 +76,11 @@ in_alphabet_accepts_padding(void) {
 }
 
 void
+get_b64_index_returns_neg1_for_garbage(void) {
+	TEST_CHECK(get_b64_index('$') == OUT_OF_ALPHABET);
+}
+
+void
 in_alphabet_works_when_b64(void) {
 	char b64_chars[] = BASE64_DIGITS;
 	for (int i = 0; i < strlen(b64_chars); i++) {
@@ -108,6 +113,7 @@ TEST_LIST = {
 	{ "smaller_input_sizes", smaller_input_sizes },
 	{ "string to octet conversion functions", string_to_octet_conversion_functions },
 	{ "Last sextet is properly masked", last_sextet_masks_correctly },
+	{ "get_b64_index_returns_neg1_for_garbage", get_b64_index_returns_neg1_for_garbage },
 	{ "in_alphabet_return_false_4_garbage", in_alphabet_return_false_4_garbage },
 	{ "in_alphabet_accepts_padding", in_alphabet_accepts_padding },
 	{ "in_alphabet_works_when_b64", in_alphabet_works_when_b64 },
