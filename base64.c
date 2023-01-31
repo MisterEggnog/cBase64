@@ -63,7 +63,7 @@ in_alphabet(char c) {
 
 static int
 get_ascii_digit(char n) {
-	return -1;
+	return n - '0';
 }
 
 #define OUT_OF_ALPHABET (-1)
