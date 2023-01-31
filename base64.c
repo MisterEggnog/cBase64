@@ -67,7 +67,7 @@ get_ascii_digit(char n) {
 }
 
 static int
-lowercase_to_int(char n) {
+ascii_lowercase_to_int(char n) {
 	return n - 'a';
 }
 

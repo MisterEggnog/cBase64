@@ -102,7 +102,7 @@ fn ## _works(void) { \
 	} \
 }
 
-N_TO_INT_WORKS(lowercase_to_int, islower, 26);
+N_TO_INT_WORKS(ascii_lowercase_to_int, islower, 26);
 
 void
 char_to_int_works(void) {
@@ -141,7 +141,7 @@ TEST_LIST = {
 	{ "in_alphabet_accepts_padding", in_alphabet_accepts_padding },
 	{ "in_alphabet_works_when_b64", in_alphabet_works_when_b64 },
 	{ "char_to_int_works", char_to_int_works },
-	{ "lowercase_to_int_works", lowercase_to_int_works },
+	{ "ascii_lowercase_to_int_works", ascii_lowercase_to_int_works },
 	{ "fail_decode_if_given_garbage", fail_decode_if_given_garbage },
 	{ "halt_decode_if_given_whitespace", halt_decode_if_given_whitespace },
 	{ NULL, NULL },
