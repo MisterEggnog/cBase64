@@ -91,13 +91,14 @@ in_alphabet_works_when_b64(void) {
 	}
 }
 
+#define IN_RANGE(z, h) (z >= 0 && z < h)
+
 void
 char_to_int_works(void) {
-#define IN_RANGE(z) (z >= 0 && z < 10)
 	for (char i = 0; i < 127; i++) {
 		int result = get_ascii_digit(i);
-		TEST_CHECK((bool)IN_RANGE(result) == (bool)isdigit(i));
-		TEST_MSG("ascii val %d, as digit %d: %d", i, result, IN_RANGE(result));
+		TEST_CHECK((bool)(IN_RANGE(result, 10)) == (bool)isdigit(i));
+		TEST_MSG("ascii:%d, digit:%d", i, result);
 	}
 }
 
