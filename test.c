@@ -105,9 +105,9 @@ fn ## _works(void) { \
 N_TO_INT_WORKS(ascii_lowercase_to_int, islower, 26);
 
 void
-char_to_int_works(void) {
+ascii_digit_to_int_works(void) {
 	for (char i = 0; i < 127; i++) {
-		int result = get_ascii_digit(i);
+		int result = ascii_digit_to_int(i);
 		TEST_CHECK((bool)(IN_RANGE(result, 10)) == (bool)isdigit(i));
 		TEST_MSG("ascii:%d, digit:%d", i, result);
 	}
@@ -140,7 +140,7 @@ TEST_LIST = {
 	{ "in_alphabet_return_false_4_garbage", in_alphabet_return_false_4_garbage },
 	{ "in_alphabet_accepts_padding", in_alphabet_accepts_padding },
 	{ "in_alphabet_works_when_b64", in_alphabet_works_when_b64 },
-	{ "char_to_int_works", char_to_int_works },
+	{ "ascii_digit_to_int_works", ascii_digit_to_int_works },
 	{ "ascii_lowercase_to_int_works", ascii_lowercase_to_int_works },
 	{ "fail_decode_if_given_garbage", fail_decode_if_given_garbage },
 	{ "halt_decode_if_given_whitespace", halt_decode_if_given_whitespace },

@@ -62,7 +62,7 @@ in_alphabet(char c) {
 }
 
 static int
-get_ascii_digit(char n) {
+ascii_digit_to_int(char n) {
 	return n - '0';
 }
 
