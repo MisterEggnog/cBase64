@@ -103,6 +103,15 @@ char_to_int_works(void) {
 }
 
 void
+lowercase_to_int_works(void) {
+	for (short i = 0; i < 127; i++) {
+		int result = i;
+		TEST_CHECK((bool)(IN_RANGE(result, 26)) == (bool)islower(i));
+		TEST_MSG("fn %d = %d", i, result);
+	}
+}
+
+void
 fail_decode_if_given_garbage(void) {
 	char encoded[] = "[[[[";
 	unsigned char raw[3];
@@ -130,6 +139,7 @@ TEST_LIST = {
 	{ "in_alphabet_accepts_padding", in_alphabet_accepts_padding },
 	{ "in_alphabet_works_when_b64", in_alphabet_works_when_b64 },
 	{ "char_to_int_works", char_to_int_works },
+	{ "lowercase_to_int_works", lowercase_to_int_works },
 	{ "fail_decode_if_given_garbage", fail_decode_if_given_garbage },
 	{ "halt_decode_if_given_whitespace", halt_decode_if_given_whitespace },
 	{ NULL, NULL },
