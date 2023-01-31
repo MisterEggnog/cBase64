@@ -105,7 +105,7 @@ char_to_int_works(void) {
 void
 lowercase_to_int_works(void) {
 	for (short i = 0; i < 127; i++) {
-		int result = i;
+		int result = lowercase_to_int(i);
 		TEST_CHECK((bool)(IN_RANGE(result, 26)) == (bool)islower(i));
 		TEST_MSG("fn %d = %d", i, result);
 	}

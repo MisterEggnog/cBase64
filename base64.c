@@ -66,6 +66,11 @@ get_ascii_digit(char n) {
 	return n - '0';
 }
 
+static int
+lowercase_to_int(char n) {
+	return n - 'a';
+}
+
 #define OUT_OF_ALPHABET (-1)
 
 static int
