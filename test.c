@@ -102,16 +102,8 @@ fn ## _works(void) { \
 	} \
 }
 
+N_TO_INT_WORKS(ascii_digit_to_int, isdigit, 10);
 N_TO_INT_WORKS(ascii_lowercase_to_int, islower, 26);
-
-void
-ascii_digit_to_int_works(void) {
-	for (char i = 0; i < 127; i++) {
-		int result = ascii_digit_to_int(i);
-		TEST_CHECK((bool)(IN_RANGE(result, 10)) == (bool)isdigit(i));
-		TEST_MSG("ascii:%d, digit:%d", i, result);
-	}
-}
 
 void
 fail_decode_if_given_garbage(void) {
