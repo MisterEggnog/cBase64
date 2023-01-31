@@ -71,6 +71,11 @@ ascii_lowercase_to_int(char n) {
 	return n - 'a';
 }
 
+static int
+ascii_uppercase_to_int(char n) {
+	return n - 'A';
+}
+
 #define OUT_OF_ALPHABET (-1)
 
 static int

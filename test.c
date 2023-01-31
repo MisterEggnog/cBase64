@@ -104,6 +104,7 @@ fn ## _works(void) { \
 
 N_TO_INT_WORKS(ascii_digit_to_int, isdigit, 10);
 N_TO_INT_WORKS(ascii_lowercase_to_int, islower, 26);
+N_TO_INT_WORKS(ascii_uppercase_to_int, isupper, 26);
 
 void
 fail_decode_if_given_garbage(void) {
@@ -134,6 +135,7 @@ TEST_LIST = {
 	{ "in_alphabet_works_when_b64", in_alphabet_works_when_b64 },
 	{ "ascii_digit_to_int_works", ascii_digit_to_int_works },
 	{ "ascii_lowercase_to_int_works", ascii_lowercase_to_int_works },
+	{ "ascii_uppercase_to_int_works", ascii_uppercase_to_int_works },
 	{ "fail_decode_if_given_garbage", fail_decode_if_given_garbage },
 	{ "halt_decode_if_given_whitespace", halt_decode_if_given_whitespace },
 	{ NULL, NULL },
