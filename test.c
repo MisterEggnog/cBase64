@@ -91,6 +91,13 @@ in_alphabet_works_when_b64(void) {
 }
 
 void
+char_to_int_works(void) {
+	for (char i = 0; i < 127; i++) {
+		TEST_CHECK_((get_ascii_digit(i) >= 0) == isdigit(i), "ascii char %d", i);
+	}
+}
+
+void
 fail_decode_if_given_garbage(void) {
 	char encoded[] = "[[[[";
 	unsigned char raw[3];
@@ -117,6 +124,7 @@ TEST_LIST = {
 	{ "in_alphabet_return_false_4_garbage", in_alphabet_return_false_4_garbage },
 	{ "in_alphabet_accepts_padding", in_alphabet_accepts_padding },
 	{ "in_alphabet_works_when_b64", in_alphabet_works_when_b64 },
+	{ "char_to_int_works", char_to_int_works },
 	{ "fail_decode_if_given_garbage", fail_decode_if_given_garbage },
 	{ "halt_decode_if_given_whitespace", halt_decode_if_given_whitespace },
 	{ NULL, NULL },

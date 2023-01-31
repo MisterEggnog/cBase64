@@ -61,6 +61,11 @@ in_alphabet(char c) {
 	return isalnum(c) || c == '+' || c == '/' || c == PADDING;
 }
 
+static int
+get_ascii_digit(char n) {
+	return -1;
+}
+
 #define OUT_OF_ALPHABET (-1)
 
 static int
