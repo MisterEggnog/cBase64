@@ -92,6 +92,17 @@ in_alphabet_works_when_b64(void) {
 }
 
 #define IN_RANGE(z, h) (z >= 0 && z < h)
+#define N_TO_INT_WORKS(fn, test_fn, upper) \
+void \
+fn ## _works(void) { \
+	for (short i = 0; i < 127; i++) { \
+		int result = fn(i); \
+		TEST_CHECK((bool)(IN_RANGE(result, upper)) == (bool)test_fn(i)); \
+		TEST_MSG("fn %d = %d", i, result); \
+	} \
+}
+
+N_TO_INT_WORKS(lowercase_to_int, islower, 26);
 
 void
 char_to_int_works(void) {
@@ -99,15 +110,6 @@ char_to_int_works(void) {
 		int result = get_ascii_digit(i);
 		TEST_CHECK((bool)(IN_RANGE(result, 10)) == (bool)isdigit(i));
 		TEST_MSG("ascii:%d, digit:%d", i, result);
-	}
-}
-
-void
-lowercase_to_int_works(void) {
-	for (short i = 0; i < 127; i++) {
-		int result = lowercase_to_int(i);
-		TEST_CHECK((bool)(IN_RANGE(result, 26)) == (bool)islower(i));
-		TEST_MSG("fn %d = %d", i, result);
 	}
 }
 
