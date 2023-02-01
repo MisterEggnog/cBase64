@@ -107,6 +107,14 @@ N_TO_INT_WORKS(ascii_lowercase_to_int, islower, 26);
 N_TO_INT_WORKS(ascii_uppercase_to_int, isupper, 26);
 
 void
+get_b64_index_works_with_b64(void) {
+	for (int i = 0; i < 64; i++) {
+		if (!TEST_CHECK_(get_b64_index(BASE64_DIGITS[i]) == i, "%d", i))
+			return;
+	}
+}
+
+void
 fail_decode_if_given_garbage(void) {
 	char encoded[] = "[[[[";
 	unsigned char raw[3];
@@ -136,6 +144,7 @@ TEST_LIST = {
 	{ "ascii_digit_to_int_works", ascii_digit_to_int_works },
 	{ "ascii_lowercase_to_int_works", ascii_lowercase_to_int_works },
 	{ "ascii_uppercase_to_int_works", ascii_uppercase_to_int_works },
+	{ "get_b64_index_works_with_b64", get_b64_index_works_with_b64 },
 	{ "fail_decode_if_given_garbage", fail_decode_if_given_garbage },
 	{ "halt_decode_if_given_whitespace", halt_decode_if_given_whitespace },
 	{ NULL, NULL },
