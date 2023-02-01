@@ -80,6 +80,19 @@ ascii_uppercase_to_int(char n) {
 
 static int
 get_b64_index(char c) {
+	if (isupper(c)) {
+		return ascii_uppercase_to_int(c);
+	} else if (islower(c)) {
+		return ascii_lowercase_to_int(c) + 26;
+	} else if (isdigit(c)) {
+		return ascii_digit_to_int(c) + 52;
+	} else if (c == '+') {
+		return 62;
+	} else if (c == '/') {
+		return 63;
+	} else {
+		return -1;
+	}
 }
 
 size_t
