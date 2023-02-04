@@ -115,6 +115,18 @@ get_b64_index_works_with_b64(void) {
 }
 
 void
+get_b64_indices_fills_indices(void) {
+	char encoded[] = "////";
+	char indices[5] = "";
+	char expected[5] = { 63, 63, 63, 63 };
+
+	get_b64_indices(encoded, indices);
+
+	TEST_CHECK(strcmp(indices, expected) == 0);
+	TEST_MSG("indices should be [63, 63, 63, 63] was [%d, %d, %d, %d]", indices[0], indices[1], indices[2], indices[3]);
+}
+
+void
 fail_decode_if_given_garbage(void) {
 	char encoded[] = "[[[[";
 	unsigned char raw[3];
@@ -145,6 +157,7 @@ TEST_LIST = {
 	{ "ascii_lowercase_to_int_works", ascii_lowercase_to_int_works },
 	{ "ascii_uppercase_to_int_works", ascii_uppercase_to_int_works },
 	{ "get_b64_index_works_with_b64", get_b64_index_works_with_b64 },
+	{ "get_b64_indices_fills_indices", get_b64_indices_fills_indices },
 	{ "fail_decode_if_given_garbage", fail_decode_if_given_garbage },
 	{ "halt_decode_if_given_whitespace", halt_decode_if_given_whitespace },
 	{ NULL, NULL },

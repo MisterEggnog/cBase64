@@ -95,6 +95,10 @@ get_b64_index(char c) {
 	}
 }
 
+static int
+get_b64_indices(const char encoded[static 4], char indices[static 4]) {
+}
+
 size_t
 base64_decode(const char encoded[], unsigned char raw[]) {
 	// TODO
