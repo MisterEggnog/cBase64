@@ -78,7 +78,7 @@ in_alphabet_accepts_padding(void) {
 
 void
 get_b64_index_returns_neg1_for_garbage(void) {
-	TEST_CHECK(get_b64_index('$') == OUT_OF_ALPHABET);
+	TEST_CHECK(get_b64_index('$') == BAD_CHAR);
 }
 
 void
@@ -131,7 +131,7 @@ get_b64_indices_fails_with_garbage(void) {
 	char encoded[] = "[[[[";
 	char indices[4];
 
-	TEST_CHECK(get_b64_indices(encoded, indices) < 0);
+	TEST_CHECK(get_b64_indices(encoded, indices) == BAD_CHAR);
 }
 
 void

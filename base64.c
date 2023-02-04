@@ -76,7 +76,7 @@ ascii_uppercase_to_int(char n) {
 	return n - 'A';
 }
 
-#define OUT_OF_ALPHABET (-1)
+#define BAD_CHAR (-1)
 
 static int
 get_b64_index(char c) {
