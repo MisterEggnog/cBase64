@@ -77,6 +77,7 @@ ascii_uppercase_to_int(char n) {
 }
 
 #define BAD_CHAR (-1)
+#define PADDING_ERR (BAD_CHAR - 1)
 
 static int
 get_b64_index(char c) {
