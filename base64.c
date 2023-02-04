@@ -99,6 +99,8 @@ static int
 get_b64_indices(const char encoded[static 4], char indices[static 4]) {
 	for (int i = 0; i < 4; i++) {
 		indices[i] = get_b64_index(encoded[i]);
+		if (indices[i] < 0)
+			return -1;
 	}
 }
 
