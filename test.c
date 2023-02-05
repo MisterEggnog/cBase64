@@ -137,6 +137,7 @@ get_b64_indices_fails_with_garbage(void) {
 void
 get_b64_indices_handles_bad_padding(void) {
 	char indices[4];
+	TEST_CHECK(get_b64_indices("=2ii", indices) == PADDING_ERR);
 	TEST_CHECK(get_b64_indices("A=ii", indices) == PADDING_ERR);
 	TEST_CHECK(get_b64_indices("A2=i", indices) == PADDING_ERR);
 }
