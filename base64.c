@@ -21,6 +21,7 @@
  */
 #include "base64.h"
 #include <ctype.h>
+#include <stdbool.h>
 
 static inline unsigned char first_sextet(const unsigned char* input) {
 	return input[0] >> 2;
@@ -91,6 +92,9 @@ get_b64_index(char c) {
 		return 62;
 	} else if (c == '/') {
 		return 63;
+	} else if (c == PADDING) {
+		// padding is treated as 0 for conversion purposes
+		return 0;
 	} else {
 		return BAD_CHAR;
 	}
@@ -98,10 +102,22 @@ get_b64_index(char c) {
 
 static int
 get_b64_indices(const char encoded[static 4], char indices[static 4]) {
+	bool found_padding = false;
+	int first_padding = -1;
+	int total_padding = 4;
 	for (int i = 0; i < 4; i++) {
 		indices[i] = get_b64_index(encoded[i]);
+
+		if (encoded[i] == PADDING)
+			indices[i] = 0;
+
 		if (indices[i] < 0)
 			return BAD_CHAR;
+	}
+
+	if (first_padding > 0) {
+		if (first_padding == 0 || total_padding + first_padding != 4)
+		return PADDING_ERR;
 	}
 }
 

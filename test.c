@@ -115,6 +115,11 @@ get_b64_index_works_with_b64(void) {
 }
 
 void
+get_b64_index_accepts_padding(void) {
+	TEST_CHECK(get_b64_index(PADDING) == 0);
+}
+
+void
 get_b64_indices_fills_indices(void) {
 	char encoded[] = "////";
 	char indices[5] = "";
@@ -172,6 +177,7 @@ TEST_LIST = {
 	{ "ascii_lowercase_to_int_works", ascii_lowercase_to_int_works },
 	{ "ascii_uppercase_to_int_works", ascii_uppercase_to_int_works },
 	{ "get_b64_index_works_with_b64", get_b64_index_works_with_b64 },
+	{ "get_b64_index_accepts_padding", get_b64_index_accepts_padding },
 	{ "get_b64_indices_fills_indices", get_b64_indices_fills_indices },
 	{ "get_b64_indices_fails_with_garbage", get_b64_indices_fails_with_garbage },
 	{ "get_b64_indices_handles_bad_padding", get_b64_indices_handles_bad_padding },
