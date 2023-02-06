@@ -66,29 +66,8 @@ last_sextet_masks_correctly(void) {
 // decode tests
 
 void
-in_alphabet_return_false_4_garbage(void) {
-	TEST_CHECK(!in_alphabet(';'));
-	TEST_MSG("in_alphabet should fail for \';\'");
-}
-
-void
-in_alphabet_accepts_padding(void) {
-	TEST_CHECK(in_alphabet(PADDING));
-}
-
-void
 get_b64_index_returns_neg1_for_garbage(void) {
 	TEST_CHECK(get_b64_index('$') == BAD_CHAR);
-}
-
-void
-in_alphabet_works_when_b64(void) {
-	char b64_chars[] = BASE64_DIGITS;
-	for (int i = 0; i < strlen(b64_chars); i++) {
-		TEST_CASE_("%c", b64_chars[i]);
-		if (!TEST_CHECK_(in_alphabet(b64_chars[i]), "%c", b64_chars[i]))
-			break;
-	}
 }
 
 #define IN_RANGE(z, h) (z >= 0 && z < h)
@@ -170,9 +149,6 @@ TEST_LIST = {
 	{ "string to octet conversion functions", string_to_octet_conversion_functions },
 	{ "Last sextet is properly masked", last_sextet_masks_correctly },
 	{ "get_b64_index_returns_neg1_for_garbage", get_b64_index_returns_neg1_for_garbage },
-	{ "in_alphabet_return_false_4_garbage", in_alphabet_return_false_4_garbage },
-	{ "in_alphabet_accepts_padding", in_alphabet_accepts_padding },
-	{ "in_alphabet_works_when_b64", in_alphabet_works_when_b64 },
 	{ "ascii_digit_to_int_works", ascii_digit_to_int_works },
 	{ "ascii_lowercase_to_int_works", ascii_lowercase_to_int_works },
 	{ "ascii_uppercase_to_int_works", ascii_uppercase_to_int_works },

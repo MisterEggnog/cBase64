@@ -56,11 +56,6 @@ base64_encode(const unsigned char input[], size_t len, char dest[]) {
 	}
 }
 
-static inline int
-in_alphabet(char c) {
-	return isalnum(c) || c == '+' || c == '/' || c == PADDING;
-}
-
 static int
 ascii_digit_to_int(char n) {
 	return n - '0';
