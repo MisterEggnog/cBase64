@@ -56,17 +56,17 @@ base64_encode(const unsigned char input[], size_t len, char dest[]) {
 	}
 }
 
-static int
+static inline int
 ascii_digit_to_int(char n) {
 	return n - '0';
 }
 
-static int
+static inline int
 ascii_lowercase_to_int(char n) {
 	return n - 'a';
 }
 
-static int
+static inline int
 ascii_uppercase_to_int(char n) {
 	return n - 'A';
 }
