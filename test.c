@@ -126,6 +126,14 @@ get_b64_indices_handles_bad_padding(void) {
 }
 
 void
+get_b64_indices_returns_num(void) {
+	char indices[4];
+	TEST_CHECK(get_b64_indices("AAAA", indices) == 4);
+	TEST_CHECK(get_b64_indices("AAA=", indices) == 3);
+	TEST_CHECK(get_b64_indices("AA==", indices) == 2);
+}
+
+void
 fail_decode_if_given_garbage(void) {
 	char encoded[] = "[[[[";
 	unsigned char raw[3];
@@ -157,6 +165,7 @@ TEST_LIST = {
 	{ "get_b64_indices_fills_indices", get_b64_indices_fills_indices },
 	{ "get_b64_indices_fails_with_garbage", get_b64_indices_fails_with_garbage },
 	{ "get_b64_indices_handles_bad_padding", get_b64_indices_handles_bad_padding },
+	{ "get_b64_indices_returns_num", get_b64_indices_returns_num },
 	{ "fail_decode_if_given_garbage", fail_decode_if_given_garbage },
 	{ "halt_decode_if_given_whitespace", halt_decode_if_given_whitespace },
 	{ NULL, NULL },

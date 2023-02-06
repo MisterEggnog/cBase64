@@ -115,6 +115,7 @@ get_b64_indices(const char encoded[static 4], char indices[static 4]) {
 	if (first_padding + byte_count != 4)
 		return PADDING_ERR;
 
+	return byte_count;
 }
 
 size_t
