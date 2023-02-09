@@ -118,6 +118,10 @@ get_b64_indices(const char encoded[static 4], char indices[static 4]) {
 	return byte_count;
 }
 
+static inline char
+decode_first_byte(char indices[static 4]) {
+}
+
 size_t
 base64_decode(const char encoded[], unsigned char raw[]) {
 	// TODO

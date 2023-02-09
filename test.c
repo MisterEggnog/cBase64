@@ -133,6 +133,17 @@ get_b64_indices_returns_num(void) {
 	TEST_CHECK(get_b64_indices("AA==", indices) == 2);
 }
 
+// THREE_OCTET_INPUT "Man"
+// THREE_OCTET_OUTPUT "TWFu"
+// THREE_OCTED_OUTPUT_INDICES { 19, 22, 5, 46 }
+
+void
+decode_first_byte_test(void) {
+	unsigned char indices[] = THREE_OCTET_OUTPUT;
+	TEST_CHECK(decode_first_byte(indices) == 'M');
+	TEST_MSG("{ 0x%2X, 0x%2X } gives %c", indices[0], indices[1], decode_first_byte(indices));
+}
+
 void
 fail_decode_if_given_garbage(void) {
 	char encoded[] = "[[[[";
@@ -166,6 +177,7 @@ TEST_LIST = {
 	{ "get_b64_indices_fails_with_garbage", get_b64_indices_fails_with_garbage },
 	{ "get_b64_indices_handles_bad_padding", get_b64_indices_handles_bad_padding },
 	{ "get_b64_indices_returns_num", get_b64_indices_returns_num },
+	{ "decode_first_byte_test", decode_first_byte_test },
 	{ "fail_decode_if_given_garbage", fail_decode_if_given_garbage },
 	{ "halt_decode_if_given_whitespace", halt_decode_if_given_whitespace },
 	{ NULL, NULL },
