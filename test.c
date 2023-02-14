@@ -141,7 +141,7 @@ void
 decode_first_byte_test(void) {
 	unsigned char indices[] = THREE_OCTET_OUTPUT;
 	TEST_CHECK(decode_first_byte(indices) == 'M');
-	TEST_MSG("{ 0x%2X, 0x%2X } gives %c", indices[0], indices[1], decode_first_byte(indices));
+	TEST_MSG("{ 0x%2X, 0x%2X } gives %d, not %d", indices[0], indices[1], decode_first_byte(indices), 'M');
 }
 
 void
