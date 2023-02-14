@@ -33,14 +33,14 @@ smaller_input_sizes(void) {
 // From wikipedia page for base64
 #define THREE_OCTET_INPUT "Man"
 #define THREE_OCTET_OUTPUT "TWFu"
-#define THREE_OCTED_OUTPUT_INDICES { 19, 22, 5, 46 }
+#define THREE_OCTET_OUTPUT_INDICES { 19, 22, 5, 46 }
 
 typedef unsigned char(*sextet_func)(const unsigned char*);
 
 void
 string_to_octet_conversion_functions(void) {
 	unsigned char input[] = THREE_OCTET_INPUT;
-	unsigned output[] = THREE_OCTED_OUTPUT_INDICES;
+	unsigned output[] = THREE_OCTET_OUTPUT_INDICES;
 	unsigned result;
 
 	sextet_func fns[] = { first_sextet, second_sextet, third_sextet, fourth_sextet};
@@ -135,11 +135,11 @@ get_b64_indices_returns_num(void) {
 
 // THREE_OCTET_INPUT "Man"
 // THREE_OCTET_OUTPUT "TWFu"
-// THREE_OCTED_OUTPUT_INDICES { 19, 22, 5, 46 }
+// THREE_OCTET_OUTPUT_INDICES { 19, 22, 5, 46 }
 
 void
 decode_first_byte_test(void) {
-	unsigned char indices[] = THREE_OCTED_OUTPUT_INDICES;
+	unsigned char indices[] = THREE_OCTET_OUTPUT_INDICES;
 	TEST_CHECK(decode_first_byte(indices) == 'M');
 	TEST_MSG("{ 0x%2X, 0x%2X } gives %d, not %d", indices[0], indices[1], decode_first_byte(indices), 'M');
 }
