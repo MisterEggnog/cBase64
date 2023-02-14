@@ -120,6 +120,7 @@ get_b64_indices(const char encoded[static 4], char indices[static 4]) {
 
 static inline char
 decode_first_byte(char indices[static 4]) {
+	return indices[0] << 2 | indices[1] >> 4;
 }
 
 size_t

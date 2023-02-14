@@ -139,7 +139,7 @@ get_b64_indices_returns_num(void) {
 
 void
 decode_first_byte_test(void) {
-	unsigned char indices[] = THREE_OCTET_OUTPUT;
+	unsigned char indices[] = THREE_OCTED_OUTPUT_INDICES;
 	TEST_CHECK(decode_first_byte(indices) == 'M');
 	TEST_MSG("{ 0x%2X, 0x%2X } gives %d, not %d", indices[0], indices[1], decode_first_byte(indices), 'M');
 }
