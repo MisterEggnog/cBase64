@@ -118,8 +118,8 @@ get_b64_indices(const char encoded[static 4], char indices[static 4]) {
 	return byte_count;
 }
 
-static inline char
-decode_first_byte(char indices[static 4]) {
+static inline unsigned char
+decode_first_byte(unsigned char indices[static 4]) {
 	return indices[0] << 2 | indices[1] >> 4;
 }
 
