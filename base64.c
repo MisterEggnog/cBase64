@@ -123,6 +123,14 @@ decode_first_byte(unsigned char indices[static 4]) {
 	return indices[0] << 2 | indices[1] >> 4;
 }
 
+static inline unsigned char
+decode_second_byte(unsigned char indices[static 4]) {
+}
+
+static inline unsigned char
+decode_third_byte(unsigned char indices[static 4]) {
+}
+
 size_t
 base64_decode(const char encoded[], unsigned char raw[]) {
 	// TODO
