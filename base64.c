@@ -125,6 +125,7 @@ decode_first_byte(unsigned char indices[static 4]) {
 
 static inline unsigned char
 decode_second_byte(unsigned char indices[static 4]) {
+	return (indices[1] & 0xF) << 4 | indices[2] >> 2;
 }
 
 static inline unsigned char
