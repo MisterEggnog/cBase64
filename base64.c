@@ -130,6 +130,7 @@ decode_second_byte(unsigned char indices[static 4]) {
 
 static inline unsigned char
 decode_third_byte(unsigned char indices[static 4]) {
+	return (indices[2] & 3) << 6 | indices[3];
 }
 
 size_t
