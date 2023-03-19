@@ -171,13 +171,13 @@ fail_decode_if_given_garbage(void) {
 }
 
 void
-halt_decode_if_given_whitespace(void) {
+fail_decode_if_given_whitespace(void) {
 	char encoded[] = "    ";
 	unsigned char raw[3];
 	int decode_result = base64_decode(encoded, raw);
 
-	TEST_CHECK_(decode_result == 0, "%d", decode_result);
-	TEST_MSG("whitespace should return 0");
+	TEST_CHECK_(decode_result < 0, "%d", decode_result);
+	TEST_MSG("whitespace should return a negative value");
 }
 
 TEST_LIST = {
@@ -199,6 +199,6 @@ TEST_LIST = {
 	{ "decode_second_byte_test", decode_second_byte_test },
 	{ "decode_third_byte_test", decode_third_byte_test },
 	{ "fail_decode_if_given_garbage", fail_decode_if_given_garbage },
-	{ "halt_decode_if_given_whitespace", halt_decode_if_given_whitespace },
+	{ "fail_decode_if_given_whitespace", fail_decode_if_given_whitespace },
 	{ NULL, NULL },
 };
