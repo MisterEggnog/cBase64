@@ -135,5 +135,15 @@ decode_third_byte(unsigned char indices[static 4]) {
 
 size_t
 base64_decode(const char encoded[], unsigned char raw[]) {
-	// TODO
+	char indices[4];
+	int byte_count = get_b64_indices(encoded, indices);
+
+	if (byte_count < 0)
+		return byte_count;
+
+	raw[0] = decode_first_byte(indices);
+	raw[1] = decode_second_byte(indices);
+	raw[2] = decode_third_byte(indices);
+
+	return byte_count;
 }
