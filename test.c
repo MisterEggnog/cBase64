@@ -164,8 +164,9 @@ void
 fail_decode_if_given_garbage(void) {
 	char encoded[] = "[[[[";
 	unsigned char raw[3];
+	int decode_result = base64_decode(encoded, raw);
 
-	TEST_CHECK(base64_decode(encoded, raw) < 0);
+	TEST_CHECK_(decode_result < 0, "%d", decode_result);
 	TEST_MSG("Garbage should return with a negative value");
 }
 
@@ -173,8 +174,9 @@ void
 halt_decode_if_given_whitespace(void) {
 	char encoded[] = "    ";
 	unsigned char raw[3];
+	int decode_result = base64_decode(encoded, raw);
 
-	TEST_CHECK(base64_decode(encoded, raw) == 0);
+	TEST_CHECK_(decode_result == 0, "%d", decode_result);
 	TEST_MSG("whitespace should return 0");
 }
 
