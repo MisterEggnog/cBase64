@@ -180,6 +180,17 @@ fail_decode_if_given_whitespace(void) {
 	TEST_MSG("whitespace should return a negative value");
 }
 
+void
+decode_3_bytes(void) {
+	char encoded[] = THREE_OCTET_OUTPUT;
+	unsigned char raw[5] = "";
+	int bytes_read = base64_decode(encoded, raw);
+	TEST_CHECK(bytes_read == 3);
+	TEST_MSG("Should return 3 bytes read, returned %s", bytes_read);
+	TEST_CHECK(strcmp(raw, "Man") == 0);
+	TEST_MSG("unencoded should return `Man`, not `%s`", raw);
+}
+
 TEST_LIST = {
 	{ "trivial_encode_4c", trivial_encode_4c },
 	{ "smaller_input_sizes", smaller_input_sizes },
@@ -200,5 +211,6 @@ TEST_LIST = {
 	{ "decode_third_byte_test", decode_third_byte_test },
 	{ "fail_decode_if_given_garbage", fail_decode_if_given_garbage },
 	{ "fail_decode_if_given_whitespace", fail_decode_if_given_whitespace },
+	{ "decode_3_bytes", decode_3_bytes },
 	{ NULL, NULL },
 };
