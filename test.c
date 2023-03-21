@@ -186,7 +186,7 @@ decode_3_bytes(void) {
 	unsigned char raw[5] = "";
 	int bytes_read = base64_decode(encoded, raw);
 	TEST_CHECK(bytes_read == 3);
-	TEST_MSG("Should return 3 bytes read, returned %s", bytes_read);
+	TEST_MSG("Should return 3 bytes read, returned %d", bytes_read);
 	TEST_CHECK(strcmp(raw, "Man") == 0);
 	TEST_MSG("unencoded should return `Man`, not `%s`", raw);
 }
