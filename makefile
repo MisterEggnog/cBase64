@@ -1,14 +1,13 @@
 
 CFLAGS=-g -Wall -I acutest/include/
 CXXFLAGS=$(CFLAGS)
-TARGET=test
+UNITTEST=test
 OCTALTEST=octaltest
 
-all: $(TARGET)
-	./$^
+all: $(UNITTEST)
 
-$(TARGET): test.c base64.c base64.h
-	$(CC) -o $(TARGET) $(CFLAGS) $<
+$(UNITTEST): test.c base64.c base64.h
+	$(CC) -o $(UNITTEST) $(CFLAGS) $<
 
 base64.o: base64.c base64.h
 
