@@ -145,5 +145,5 @@ base64_decode(const char encoded[], unsigned char raw[]) {
 	raw[1] = decode_second_byte(indices);
 	raw[2] = decode_third_byte(indices);
 
-	return byte_count;
+	return byte_count - 1;
 }
