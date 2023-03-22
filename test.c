@@ -196,6 +196,18 @@ decode_3_bytes(void) {
 	decode_n_bytes(encoded, 3, "Man");
 }
 
+void
+decode_2_bytes(void) {
+	char encoded[] = "TWE=";
+	decode_n_bytes(encoded, 2, "Ma");
+}
+
+void
+decode_1_byte(void) {
+	char encoded[] = "TQ==";
+	decode_n_bytes(encoded, 1, "M");
+}
+
 TEST_LIST = {
 	{ "trivial_encode_4c", trivial_encode_4c },
 	{ "smaller_input_sizes", smaller_input_sizes },
@@ -217,5 +229,7 @@ TEST_LIST = {
 	{ "fail_decode_if_given_garbage", fail_decode_if_given_garbage },
 	{ "fail_decode_if_given_whitespace", fail_decode_if_given_whitespace },
 	{ "decode_3_bytes", decode_3_bytes },
+	{ "decode_2_bytes", decode_2_bytes },
+	{ "decode_1_byte", decode_1_byte },
 	{ NULL, NULL },
 };
