@@ -181,14 +181,19 @@ fail_decode_if_given_whitespace(void) {
 }
 
 void
-decode_3_bytes(void) {
-	char encoded[] = THREE_OCTET_OUTPUT;
+decode_n_bytes(char* encoded, int bytes_exp, const char* exp_str) {
 	unsigned char raw[5] = "";
 	int bytes_read = base64_decode(encoded, raw);
-	TEST_CHECK(bytes_read == 3);
-	TEST_MSG("Should return 3 bytes read, returned %d", bytes_read);
-	TEST_CHECK(strcmp(raw, "Man") == 0);
-	TEST_MSG("unencoded should return `Man`, not `%s`", raw);
+	TEST_CHECK(bytes_read == bytes_exp);
+	TEST_MSG("Should return %d bytes read, returned %d", bytes_exp, bytes_read);
+	TEST_CHECK(strcmp(raw, exp_str) == 0);
+	TEST_MSG("unencoded should return `%s`, not `%s`", exp_str, raw);
+}
+
+void
+decode_3_bytes(void) {
+	char encoded[] = THREE_OCTET_OUTPUT;
+	decode_n_bytes(encoded, 3, "Man");
 }
 
 TEST_LIST = {
