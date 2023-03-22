@@ -25,4 +25,4 @@ precomputed_tests: precomputed_tests.o base64.o file.ctv
 	$(CC) -o $@ $(CFLAGS) $< base64.o
 
 clean:
-	$(RM) $(TARGET) $(OCTALTEST)
+	$(RM) $(UNITTEST) $(OCTALTEST) precomputed_tests *.o
