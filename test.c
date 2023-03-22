@@ -186,7 +186,7 @@ decode_n_bytes(char* encoded, int bytes_exp, const char* exp_str) {
 	int bytes_read = base64_decode(encoded, raw);
 	TEST_CHECK(bytes_read == bytes_exp);
 	TEST_MSG("Should return %d bytes read, returned %d", bytes_exp, bytes_read);
-	TEST_CHECK(strcmp(raw, exp_str) == 0);
+	TEST_CHECK(strcmp((char*)raw, exp_str) == 0);
 	TEST_MSG("unencoded should return `%s`, not `%s`", exp_str, raw);
 }
 
