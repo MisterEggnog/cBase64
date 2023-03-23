@@ -22,11 +22,16 @@ int read_base64_data(FILE* source, struct base64_precompute* dest) {
 #define DATA_FILE ("file.ctv")
 
 bool
-test_decode_return(int return_code, unsigned char raw[], struct base64_precompute data) {
+test_decode_return(
+		int return_code,
+		int expected_code,
+		unsigned char raw[],
+		struct base64_precompute data
+		) {
 		bool stop;
 
-		stop = TEST_CHECK(return_code == 3);
-		TEST_MSG("returned %d instead of 3", return_code);
+		stop = TEST_CHECK(return_code == expected_code);
+		TEST_MSG("returned %d instead of %d", return_code, expected_code);
 
 		for (int i = 0; i < 3; i++)
 			stop = !TEST_CHECK(raw[i] == data.raw[i]) || stop;
@@ -49,7 +54,7 @@ test_3_byte_decode(void) {
 		int return_code = base64_decode(data.three_str, raw);
 
 
-		if (test_decode_return(return_code, raw, data))
+		if (test_decode_return(return_code, 3, raw, data))
 			break;
 	}
 
