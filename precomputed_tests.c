@@ -22,7 +22,7 @@ int read_base64_data(FILE* source, struct base64_precompute* dest) {
 #define DATA_FILE ("file.ctv")
 
 void
-test_3_byte_decode(void) {
+test_decode(int expected_code) {
 	char buffer[BUFSIZ];
 	struct base64_precompute data;
 	FILE* input_data = fopen(DATA_FILE, "r");
@@ -33,8 +33,8 @@ test_3_byte_decode(void) {
 		unsigned char raw[3] = "";
 		int return_code = base64_decode(data.three_str, raw);
 
-		TEST_CHECK(return_code == 3);
-		TEST_MSG("returned %d instead of 3", return_code);
+		TEST_CHECK(return_code == expected_code);
+		TEST_MSG("returned %d instead of %d", return_code, expected_code);
 		for (int i = 0; i < 3; i++)
 			stop = !TEST_CHECK(raw[i] == data.raw[i]) || stop;
 		TEST_MSG("Expected raw to be [%x, %x, %x], was [%x, %x, %x].", data.raw[0], data.raw[1], data.raw[2], raw[0], raw[1], raw[2]);
@@ -45,6 +45,11 @@ test_3_byte_decode(void) {
 	}
 
 	fclose(input_data);
+}
+
+void
+test_3_byte_decode(void) {
+	test_decode(3);
 }
 
 #define RESULT_ERR_STR "result %s str was not \"%s\""
