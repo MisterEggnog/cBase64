@@ -21,6 +21,22 @@ int read_base64_data(FILE* source, struct base64_precompute* dest) {
 
 #define DATA_FILE ("file.ctv")
 
+bool
+test_decode_return(int return_code, unsigned char raw[], struct base64_precompute data) {
+		bool stop;
+
+		stop = TEST_CHECK(return_code == 3);
+		TEST_MSG("returned %d instead of 3", return_code);
+
+		for (int i = 0; i < 3; i++)
+			stop = !TEST_CHECK(raw[i] == data.raw[i]) || stop;
+		TEST_MSG("Expected raw to be [%x, %x, %x], was [%x, %x, %x].", data.raw[0], data.raw[1], data.raw[2], raw[0], raw[1], raw[2]);
+
+		TEST_MSG("given source string \"%s\"", data.three_str);
+
+		return stop;
+}
+
 void
 test_3_byte_decode(void) {
 	char buffer[BUFSIZ];
@@ -29,18 +45,11 @@ test_3_byte_decode(void) {
 	setbuf(input_data, buffer);
 
 	while (read_base64_data(input_data, &data) != EOF) {
-		bool stop = false;
 		unsigned char raw[3] = "";
 		int return_code = base64_decode(data.three_str, raw);
 
-		TEST_CHECK(return_code == 3);
-		TEST_MSG("returned %d instead of 3", return_code);
-		for (int i = 0; i < 3; i++)
-			stop = !TEST_CHECK(raw[i] == data.raw[i]) || stop;
-		TEST_MSG("Expected raw to be [%x, %x, %x], was [%x, %x, %x].", data.raw[0], data.raw[1], data.raw[2], raw[0], raw[1], raw[2]);
-		TEST_MSG("given source string \"%s\"", data.three_str);
 
-		if (stop)
+		if (test_decode_return(return_code, raw, data))
 			break;
 	}
 
