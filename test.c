@@ -138,8 +138,8 @@ get_b64_indices_returns_num(void) {
 // THREE_OCTET_OUTPUT_INDICES { 19, 22, 5, 46 }
 
 void
-decode_byte_test(unsigned char(*decode_fn)(unsigned char*), char exp) {
-	unsigned char indices[] = THREE_OCTET_OUTPUT_INDICES;
+decode_byte_test(unsigned char(*decode_fn)(char*), char exp) {
+	char indices[] = THREE_OCTET_OUTPUT_INDICES;
 	unsigned char res = decode_fn(indices);
 	TEST_CHECK(res == exp);
 	TEST_MSG("{ 0x%2X, 0x%2X, 0x%2X, 0x%2X } gives %d, not %d", indices[0], indices[1], indices[2], indices[3], res, exp);

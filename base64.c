@@ -119,17 +119,17 @@ get_b64_indices(const char encoded[static 4], char indices[static 4]) {
 }
 
 static inline unsigned char
-decode_first_byte(unsigned char indices[static 4]) {
+decode_first_byte(char indices[static 4]) {
 	return indices[0] << 2 | indices[1] >> 4;
 }
 
 static inline unsigned char
-decode_second_byte(unsigned char indices[static 4]) {
+decode_second_byte(char indices[static 4]) {
 	return (indices[1] & 0xF) << 4 | indices[2] >> 2;
 }
 
 static inline unsigned char
-decode_third_byte(unsigned char indices[static 4]) {
+decode_third_byte(char indices[static 4]) {
 	return (indices[2] & 3) << 6 | indices[3];
 }
 
