@@ -31,7 +31,10 @@ test_3_byte_decode(void) {
 	while (read_base64_data(input_data, &data) != EOF) {
 		bool stop = false;
 		unsigned char raw[3] = "";
-		base64_decode(data.three_str, raw);
+		int return_code = base64_decode(data.three_str, raw);
+
+		TEST_CHECK(return_code == 3);
+		TEST_MSG("returned %d instead of 3", return_code);
 		for (int i = 0; i < 3; i++)
 			stop = !TEST_CHECK(raw[i] == data.raw[i]) || stop;
 		TEST_MSG("Expected raw to be [%x, %x, %x], was [%x, %x, %x].", data.raw[0], data.raw[1], data.raw[2], raw[0], raw[1], raw[2]);
