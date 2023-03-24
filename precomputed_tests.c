@@ -60,6 +60,29 @@ test_3_byte_decode(void) {
 	test_decode(3, decode_3_prep);
 }
 
+static char*
+decode_2_prep(struct base64_precompute* data) {
+	data->raw[2] = 0;
+	return data->two_str;
+}
+
+void
+test_2_byte_decode(void) {
+	test_decode(2, decode_2_prep);
+}
+
+static char*
+decode_1_prep(struct base64_precompute* data) {
+	data->raw[2] = 0;
+	data->raw[1] = 0;
+	return data->one_str;
+}
+
+void
+test_1_byte_decode(void) {
+	test_decode(1, decode_1_prep);
+}
+
 #define RESULT_ERR_STR "result %s str was not \"%s\""
 #define TEST_STR_IS_RIGHT(field_name, num, expstr) { \
 	TEST_CHECK(strcmp(result.field_name, expstr) == 0); \
@@ -90,6 +113,8 @@ read_into_table_test(void) {
 
 TEST_LIST = {
 	{ "test_3_byte_decode", test_3_byte_decode },
+	{ "test_2_byte_decode", test_2_byte_decode },
+	{ "test_1_byte_decode", test_1_byte_decode },
 	{ "read_into_table_test", read_into_table_test },
 	{ NULL, NULL },
 };
