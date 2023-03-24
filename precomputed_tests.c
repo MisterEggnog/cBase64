@@ -21,8 +21,10 @@ int read_base64_data(FILE* source, struct base64_precompute* dest) {
 
 #define DATA_FILE ("file.ctv")
 
+typedef char*(*prep)(struct base64_precompute*);
+
 void
-test_decode(int expected_code) {
+test_decode(int expected_code, prep fn) {
 	char buffer[BUFSIZ];
 	struct base64_precompute data;
 	FILE* input_data = fopen(DATA_FILE, "r");
@@ -47,9 +49,14 @@ test_decode(int expected_code) {
 	fclose(input_data);
 }
 
+char*
+decode_3_prep(struct base64_precompute* data) {
+	return data->three_str;
+}
+
 void
 test_3_byte_decode(void) {
-	test_decode(3);
+	test_decode(3, decode_3_prep);
 }
 
 #define RESULT_ERR_STR "result %s str was not \"%s\""
