@@ -33,14 +33,15 @@ test_decode(int expected_code, prep fn) {
 	while (read_base64_data(input_data, &data) != EOF) {
 		bool stop = false;
 		unsigned char raw[3] = "";
-		int return_code = base64_decode(data.three_str, raw);
+		char* encoded_str = fn(&data);
+		int return_code = base64_decode(encoded_str, raw);
 
 		TEST_CHECK(return_code == expected_code);
 		TEST_MSG("returned %d instead of %d", return_code, expected_code);
 		for (int i = 0; i < 3; i++)
 			stop = !TEST_CHECK(raw[i] == data.raw[i]) || stop;
 		TEST_MSG("Expected raw to be [%x, %x, %x], was [%x, %x, %x].", data.raw[0], data.raw[1], data.raw[2], raw[0], raw[1], raw[2]);
-		TEST_MSG("given source string \"%s\"", data.three_str);
+		TEST_MSG("given source string \"%s\"", encoded_str);
 
 		if (stop)
 			break;
@@ -49,7 +50,7 @@ test_decode(int expected_code, prep fn) {
 	fclose(input_data);
 }
 
-char*
+static char*
 decode_3_prep(struct base64_precompute* data) {
 	return data->three_str;
 }
