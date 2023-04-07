@@ -1,4 +1,7 @@
 /*
+ * Simple base64 encoding/decoding library.
+ * <https://github.com/MisterEggnog/cBase64>
+ *
  * Copyright 2022 Josiah Baldwin
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
