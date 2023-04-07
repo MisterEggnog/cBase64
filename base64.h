@@ -42,8 +42,7 @@ extern "C" {
 //
 // input must be an array of at least length 3.
 // dest must be an array of at least length 4.
-void
-base64_encode(const unsigned char input[static 3], size_t len, char dest[static 4]);
+void base64_encode(const unsigned char input[static 3], size_t len, char dest[static 4]);
 
 // Convert 4 base64 numbers into 3 bytes, return the number of decoded byres.
 // encoded must be a string of at least 4 characters
@@ -51,8 +50,7 @@ base64_encode(const unsigned char input[static 3], size_t len, char dest[static 
 // return how many bytes were writen to raw
 //
 // Program may exit if input contains characters outside of BASE64_DIGITS or PADDING
-size_t
-base64_decode(const char encoded[], unsigned char raw[]);
+size_t base64_decode(const char encoded[], unsigned char raw[]);
 
 #ifdef __cplusplus
 #undef static
