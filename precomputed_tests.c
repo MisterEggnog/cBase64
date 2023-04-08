@@ -13,7 +13,8 @@ struct base64_precompute {
 };
 
 int read_base64_data(FILE* source, struct base64_precompute* dest) {
-	int amount_read = fscanf(source, "%2hhx%2hhx%2hhx|%4s|%4s|%4s", &dest->raw[0], &dest->raw[1], &dest->raw[2], dest->three_str, dest->two_str, dest->one_str);
+	int amount_read = fscanf(source, "%2hhx%2hhx%2hhx|%4s|%4s|%4s", &dest->raw[0],
+		&dest->raw[1], &dest->raw[2], dest->three_str, dest->two_str, dest->one_str);
 
 	assert(amount_read == 6 || amount_read == EOF);
 	return amount_read;
@@ -40,7 +41,8 @@ test_decode(int expected_code, prep fn) {
 		TEST_MSG("returned %d instead of %d", return_code, expected_code);
 		for (int i = 0; i < 3; i++)
 			stop = !TEST_CHECK(raw[i] == data.raw[i]) || stop;
-		TEST_MSG("Expected raw to be [%x, %x, %x], was [%x, %x, %x].", data.raw[0], data.raw[1], data.raw[2], raw[0], raw[1], raw[2]);
+		TEST_MSG("Expected raw to be [%x, %x, %x], was [%x, %x, %x].",
+			data.raw[0], data.raw[1], data.raw[2], raw[0], raw[1], raw[2]);
 		TEST_MSG("given source string \"%s\"", encoded_str);
 
 		if (stop)
@@ -102,7 +104,8 @@ read_into_table_test(void) {
 	unsigned char expected_bytes[] = { 0xAB, 0xCD, 0xEF };
 	for (int i = 0; i < 3; i++)
 		TEST_CHECK(result.raw[i] == expected_bytes[i]);
-	TEST_MSG("Result was supposed to be 0xABCDEF, not 0x%02hhX%02hhX%02hhX", result.raw[0], result.raw[1], result.raw[2]);
+	TEST_MSG("Result was supposed to be 0xABCDEF, not 0x%02hhX%02hhX%02hhX",
+		result.raw[0], result.raw[1], result.raw[2]);
 
 	TEST_STR_IS_RIGHT(three_str, "three", "abcd");
 	TEST_STR_IS_RIGHT(two_str, "two", "abc=");
