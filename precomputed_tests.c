@@ -51,6 +51,10 @@ test_decode(int expected_code, prep fn) {
 	fclose(input_data);
 }
 
+void
+test_encode(int length, prep fn) {
+}
+
 static char*
 decode_3_prep(struct base64_precompute* data) {
 	return data->three_str;
@@ -82,6 +86,11 @@ decode_1_prep(struct base64_precompute* data) {
 void
 test_1_byte_decode(void) {
 	test_decode(1, decode_1_prep);
+}
+
+void
+test_3_byte_encode(void) {
+	test_encode(0, NULL);
 }
 
 #define RESULT_ERR_STR "result %s str was not \"%s\""
@@ -117,6 +126,7 @@ TEST_LIST = {
 	{ "test_3_byte_decode", test_3_byte_decode },
 	{ "test_2_byte_decode", test_2_byte_decode },
 	{ "test_1_byte_decode", test_1_byte_decode },
+	{ "test_3_byte_encode", test_3_byte_encode },
 	{ "read_into_table_test", read_into_table_test },
 	{ NULL, NULL },
 };
