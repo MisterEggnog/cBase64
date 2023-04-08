@@ -39,8 +39,7 @@ test_decode(int expected_code, prep fn) {
 
 		TEST_CHECK(return_code == expected_code);
 		TEST_MSG("returned %d instead of %d", return_code, expected_code);
-		for (int i = 0; i < 3; i++)
-			stop = !TEST_CHECK(raw[i] == data.raw[i]) || stop;
+		stop = !TEST_CHECK(memcmp(raw, data.raw, 3) == 0);
 		TEST_MSG("Expected raw to be [%x, %x, %x], was [%x, %x, %x].",
 			data.raw[0], data.raw[1], data.raw[2], raw[0], raw[1], raw[2]);
 		TEST_MSG("given source string \"%s\"", encoded_str);
