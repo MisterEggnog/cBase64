@@ -53,6 +53,25 @@ test_decode(int expected_code, prep fn) {
 
 void
 test_encode(int length, prep fn) {
+	char buffer[BUFSIZ];
+	struct base64_precompute data;
+	FILE* input_data = fopen(DATA_FILE, "r");
+	setbuf(input_data, buffer);
+
+	while (read_base64_data(input_data, &data) != EOF) {
+		bool exit;
+		char encoded[5] = "";
+		char* expected = data.three_str;
+		base64_encode(data.raw, 3, encoded);
+
+		exit = !TEST_CHECK(strcmp(encoded, expected) == 0);
+		TEST_MSG("Expected %s, received %s", expected, encoded);
+
+		if (exit)
+			break;
+	}
+
+	fclose(input_data);
 }
 
 static char*
