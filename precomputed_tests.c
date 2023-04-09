@@ -61,8 +61,8 @@ test_encode(int length, prep fn) {
 	while (read_base64_data(input_data, &data) != EOF) {
 		bool exit;
 		char encoded[5] = "";
-		char* expected = data.three_str;
-		base64_encode(data.raw, 3, encoded);
+		char* expected = fn(&data);
+		base64_encode(data.raw, length, encoded);
 
 		exit = !TEST_CHECK(strcmp(encoded, expected) == 0);
 		TEST_MSG("Expected %s, received %s", expected, encoded);
@@ -107,9 +107,14 @@ test_1_byte_decode(void) {
 	test_decode(1, decode_1_prep);
 }
 
+char*
+encode_3_prep(struct base64_precompute* data) {
+	return data->three_str;
+}
+
 void
 test_3_byte_encode(void) {
-	test_encode(0, NULL);
+	test_encode(3, encode_3_prep);
 }
 
 #define RESULT_ERR_STR "result %s str was not \"%s\""
