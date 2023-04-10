@@ -66,6 +66,7 @@ test_encode(int length, prep fn) {
 
 		exit = !TEST_CHECK(strcmp(encoded, expected) == 0);
 		TEST_MSG("Expected %s, received %s", expected, encoded);
+		TEST_MSG("Given [%x, %x, %x]", data.raw[0], data.raw[1], data.raw[2]);
 
 		if (exit)
 			break;
