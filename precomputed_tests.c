@@ -128,6 +128,16 @@ test_2_byte_encode(void) {
 	test_encode(2, encode_2_prep);
 }
 
+char*
+encode_1_prep(struct base64_precompute* data) {
+	return data->one_str;
+}
+
+void
+test_1_byte_encode(void) {
+	test_encode(1, encode_1_prep);
+}
+
 #define RESULT_ERR_STR "result %s str was not \"%s\""
 #define TEST_STR_IS_RIGHT(field_name, num, expstr) { \
 	TEST_CHECK(strcmp(result.field_name, expstr) == 0); \
@@ -163,6 +173,7 @@ TEST_LIST = {
 	{ "test_1_byte_decode", test_1_byte_decode },
 	{ "test_3_byte_encode", test_3_byte_encode },
 	{ "test_2_byte_encode", test_2_byte_encode },
+	{ "test_1_byte_encode", test_1_byte_encode },
 	{ "read_into_table_test", read_into_table_test },
 	{ NULL, NULL },
 };
