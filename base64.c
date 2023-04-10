@@ -43,16 +43,24 @@ static inline unsigned char fourth_sextet(const unsigned char* input) {
 
 void
 base64_encode(const unsigned char raw[], size_t len, char encoded[]) {
+	unsigned char local[3] = "";
 	encoded[3] = encoded[2] = PADDING;
+	local[0] = raw[0];
+
+	switch (len) {
+		case 3: local[2] = raw[2];
+		case 2: local[1] = raw[1];
+		default: break;
+	}
 
 	switch (len) {
 		case 3:
-			encoded[3] = BASE64_DIGITS[fourth_sextet(raw)];
+			encoded[3] = BASE64_DIGITS[fourth_sextet(local)];
 		case 2:
-			encoded[2] = BASE64_DIGITS[third_sextet(raw)];
+			encoded[2] = BASE64_DIGITS[third_sextet(local)];
 		case 1:
-			encoded[1] = BASE64_DIGITS[second_sextet(raw)];
-			encoded[0] = BASE64_DIGITS[first_sextet(raw)];
+			encoded[1] = BASE64_DIGITS[second_sextet(local)];
+			encoded[0] = BASE64_DIGITS[first_sextet(local)];
 			break;
 		default:
 			break;
