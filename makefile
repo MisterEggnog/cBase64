@@ -1,18 +1,18 @@
 
 CFLAGS=-g -Wall -I acutest/include/
 CXXFLAGS=$(CFLAGS)
-UNITTEST=test
 OCTALTEST=octaltest
 PRECOMPUTE=precomputed_tests
 
-all: $(UNITTEST)
+all: test
 
-run_tests: test $(PRECOMPUTE)
+run_tests: test $(PRECOMPUTE) $(OCTALTEST)
 	./test
 	./$(PRECOMPUTE)
+	./$(OCTALTEST)
 
-$(UNITTEST): test.c base64.c base64.h
-	$(CC) -o $(UNITTEST) $(CFLAGS) $<
+test: test.c base64.c base64.h
+	$(CC) -o $@ $(CFLAGS) $<
 
 base64.o: base64.c base64.h
 
@@ -30,4 +30,4 @@ precomputed_tests: precomputed_tests.o base64.o file.ctv
 	$(CC) -o $@ $(CFLAGS) $< base64.o
 
 clean:
-	$(RM) $(UNITTEST) $(OCTALTEST) precomputed_tests *.o
+	$(RM) test $(OCTALTEST) precomputed_tests *.o
