@@ -1,5 +1,4 @@
 *.o
 test
-octaltest
 file.ctv
 precomputed_tests
